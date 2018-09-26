@@ -1,3 +1,3 @@
-# From Visual Studio and GitHub!
+# From GitHub!
 print("Hello World!")
 print("World << Hello!")
