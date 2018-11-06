@@ -1,4 +1,8 @@
-subroutine rk4 ( t0, u0, dt, f, u )
+module rkf45
+    implicit none
+    contains
+    
+    subroutine rk4 ( t0, u0, dt, f, u )
 
 !*****************************************************************************80
 !
@@ -251,3 +255,5 @@ subroutine timestamp ( )
 
   return
 end
+
+end module
