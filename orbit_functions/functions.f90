@@ -21,28 +21,31 @@ contains
     real( kind = 8 ), intent(in) :: t
     real( kind = 8 ) :: f(size(u))
     real( kind = 8 ) :: r_i(3), r_j(3), a_i(3)
-    
+    double precision, allocatable :: mu(:)
     integer :: i, j, n
     
-    ! u = [(mu) * N, (x,y,z) * N, (vx,vy,vz) * N] = 7 * N
-    
-    write(*,*) size(u)
     n = size(u) / 7
+    allocate(mu(n))
+    mu = u(1:n)
+    
+    ! u = [(mu) * N, (x,y,z) * N, (vx,vy,vz) * N] = 7 * N
+    ! u = [1:N     , N+1:4N     ,4N+1:7N        ] = 7 * N
+    
     
     f(1:n) = [ (0e0,i=1,n)]  ! Mass is constant
-    f(n+1: 4*n) = u(4*n+1:7*n)  ! dx/dt = v
+    f(n+1:4*n) = u(4*n+1:7*n)  ! dx/dt = v
     
     do i = 0, n-1
-        write(*,*)"FUNC"
-        r_i = u(n+3*i+1:n+4*i)
+        r_i = u(n+1+3*i:n+4*i)
         a_i = [0e0,0e0,0e0]
         do j = 0, n-1
-            r_j = u(n+3*j+1:n+4*j)
+            r_j = u(n+j+3*j:n+4*j)
             if (i/=j) then
-                a_i = a_i - u(j+1) * (r_i - r_j) / norm2(r_i-r_j)**3e0
+                a_i = a_i - mu(j+1) * (r_i - r_j) / norm2(r_i-r_j)**3e0
             end if
         end do
-        f(4*n+3*i+1:4*n+4*i) = a_i
+        f(4*n+1+3*i:4*n+4*i) = a_i
+        
     end do
   end function
   
