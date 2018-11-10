@@ -11,7 +11,7 @@ program prog_n_bodies
     double precision, dimension(3) :: x0e = [-1d0, 0d0 ,0d0]
     double precision, dimension(3) :: v0e = [ 0d0,-1d0, 0d0] / 8d1
     double precision, dimension(3) :: x0m = [ 8d1, 0d0 ,0d0]
-    double precision, dimension(3) :: v0m = [ 0d0, 1d0 ,0d0]
+    double precision, dimension(3) :: v0m = [ 0d0, 1.1d0 ,0d0]
     double precision, dimension(3) :: x0s = [ 0d0, 9d0 ,0d0]
     double precision, dimension(3) :: v0s = [ 3d0, 0d0 ,0d0]
     
@@ -36,7 +36,7 @@ program prog_n_bodies
     call qplot(u(n+4,:), u(n+5,:), iters)  ! Moon
     call qplot(u(n+7,:), u(n+8,:), iters)  ! S/C
     !call qplot(time, x_cg(3,:), iters)  ! Zcg
-    !call qplot(time, v_cg(3,:), iters)  ! VZcg
+    call qplot(time, v_cg(1,:), iters)  ! VXcg
     
     close(13)
         
