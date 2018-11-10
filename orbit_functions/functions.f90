@@ -17,10 +17,10 @@ contains
   end function
   
   function n_bodies(u,t) result(f)
-    real( kind = 8 ), intent(in) :: u(:)
-    real( kind = 8 ), intent(in) :: t
-    real( kind = 8 ) :: f(size(u))
-    real( kind = 8 ) :: r_i(3), r_j(3), a_i(3)
+    double precision, intent(in) :: u(:)
+    double precision, intent(in) :: t
+    double precision :: f(size(u))
+    double precision :: r_i(3), r_j(3), a_i(3)
     double precision, allocatable :: mu(:)
     integer :: i, j, n
     
@@ -32,19 +32,19 @@ contains
     ! u = [1:N     , N+1:4N     ,4N+1:7N        ] = 7 * N
     
     
-    f(1:n) = [ (0e0,i=1,n)]  ! Mass is constant
+    f(1:n) = [ (0d0,i=1,n)]  ! Mass is constant
     f(n+1:4*n) = u(4*n+1:7*n)  ! dx/dt = v
     
     do i = 0, n-1
-        r_i = u(n+1+3*i:n+4*i)
-        a_i = [0e0,0e0,0e0]
+        r_i = u(n+1+3*i:n+3+3*i)
+        a_i = [0d0,0d0,0d0]
         do j = 0, n-1
-            r_j = u(n+j+3*j:n+4*j)
+            r_j = u(n+1+3*j:n+3+3*j)
             if (i/=j) then
-                a_i = a_i - mu(j+1) * (r_i - r_j) / norm2(r_i-r_j)**3e0
+                a_i = a_i - mu(j+1) * (r_i - r_j) / norm2(r_i-r_j)**3d0
             end if
         end do
-        f(4*n+1+3*i:4*n+4*i) = a_i
+        f(4*n+1+3*i:4*n+3+3*i) = a_i
         
     end do
   end function
