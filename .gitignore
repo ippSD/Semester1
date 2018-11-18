@@ -256,12 +256,26 @@ paket-files/
 # CodeRush
 .cr/
 
-# Python Tools for Visual Studio (PTVS)
-__pycache__/
-*.pyc
-**/*OLD*
 
-**/*Advisor*/
 
-[Dd]ebug/
-[Dd]ebugPublic/
+
+
+
+# Python folders & files to skip
+*.pyc            # Skip python compiled files
+**/__pycache__   # Skip folder containing python compiled files
+
+# FORTRAN folders & files to skip
+[Dd]ebug/        # Skip 'debug' or 'Debug' folders
+[Dd]ebugPublic/  # Skip 'debugPublic' or 'DebugPublic' folders
+**/*Advisor*/    # Skip folders containing the 'Advisor' string.
+
+# Other elements
+**/*OLD*         # Skip folders containing the 'OLD' string.
+/numerical_methods/My Advisor Results - numerical_methods
+/n_bodies/My Advisor Results - n_bodies
+/rkf45/Debug
+/orbit_integrator/Debug
+/orbit_functions/Debug
+/n_bodies/Debug
+/numerical_methods/Debug
