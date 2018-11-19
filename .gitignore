@@ -257,25 +257,14 @@ paket-files/
 .cr/
 
 
-
-
-
-
 # Python folders & files to skip
-*.pyc            # Skip python compiled files
-**/__pycache__   # Skip folder containing python compiled files
-
-# FORTRAN folders & files to skip
-[Dd]ebug/        # Skip 'debug' or 'Debug' folders
-[Dd]ebugPublic/  # Skip 'debugPublic' or 'DebugPublic' folders
-**/*Advisor*/    # Skip folders containing the 'Advisor' string.
+# Skip python compiled files
+*.pyc
+# Skip folder containing python compiled files
+**/__pycache__
 
 # Other elements
-**/*OLD*         # Skip folders containing the 'OLD' string.
-/numerical_methods/My Advisor Results - numerical_methods
-/n_bodies/My Advisor Results - n_bodies
-/rkf45/Debug
-/orbit_integrator/Debug
-/orbit_functions/Debug
-/n_bodies/Debug
-/numerical_methods/Debug
+
+**/[Dd]ebug/*
+**/*Advisor*/*
+**/*OLD*

@@ -48,10 +48,5 @@
 		<Filter Name="Header Files" Filter="fi;fd;h;inc"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<Filter Name="dislin">
-		<File RelativePath="..\dislin\disdll_d.dll"/>
-		<File RelativePath="..\dislin\disdll_d.lib"/>
-		<File RelativePath="..\dislin\disifc_d.lib"/>
-		<File RelativePath="..\dislin\dislin_d.f90"/></Filter>
 		<File RelativePath=".\main.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

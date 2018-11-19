@@ -1,30 +1,18 @@
 module cauchy
+  use interfaces
   implicit none
-  interface
-    function f_rn_rn(u, t) result(f)
-      real (kind = 8), intent(in) :: u(0:),  t
-      real (kind = 8) :: f(0:size(u))
-    end function
-  end interface
+
 contains
-  subroutine cauchy_problem(u, tf, f)
-    real (kind = 8), intent(inout) :: u(0:,0:) !0:M (time steps), 0:N(variables)
-    real (kind = 8), intent(in) :: tf !0:M
-    procedure(f_rn_rn) :: f
+  subroutine cauchy_problem(time_domain, differential_operator, temporal_scheme, solution)
+    double precision, intent(in) :: time_domain(0:)  !0:M
+    procedure(odes) :: differential_operator
+    procedure(scheme) :: temporal_scheme
+    real (kind = 8), intent(inout) :: solution(0:,:) !0:M (time steps), N(variables)
+    integer :: m, i
 
-    integer :: m
-    real (kind = 8) :: delta_t
-    integer :: n
-    real (kind = 8) :: tn
-
-    write(*,*) u(0,:)
-
-    m = size(u(:,0))
-    delta_t = tf / m
-
-    do n = 0, m - 1
-      tn = n * delta_t
-      u(n + 1, :) = u(n, :) + delta_t * f(u(n, :), tn)
+    m = size(time_domain) - 1
+    do i = 0, m - 1
+        call temporal_scheme(differential_operator, time_domain(i), time_domain(i+1), solution(i,:), solution(i+1,:))
     end do
   end subroutine
 end module cauchy

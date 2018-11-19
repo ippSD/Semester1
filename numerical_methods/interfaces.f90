@@ -1,7 +1,13 @@
 module interfaces
     implicit none
     
-    interface
+    abstract interface
+    
+        function odes(u, t) result(f)
+          double precision, intent(in) :: u(:),  t
+          double precision :: f(size(u))
+        end function
+        
         subroutine f_s_schemes ( t, u, uprime )
             double precision,intent(in) :: t
             double precision, intent(in) :: u
@@ -16,4 +22,19 @@ module interfaces
         end subroutine f_v_schemes
     end interface
     
-end module
+    abstract interface
+
+        subroutine scheme(f, t1, t2, u1, u2)
+            double precision, intent(in) :: t1, t2, u1(:)
+            double precision, intent(out) :: u2(size(u1))
+            interface
+                function f(u, t)
+                  double precision, intent(in) :: u(:),  t
+                  double precision :: f(size(u))
+                end function
+            end interface
+        end subroutine scheme
+        
+    end interface
+    
+end module interfaces

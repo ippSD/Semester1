@@ -1,6 +1,6 @@
 module functions
   implicit none
-contains
+  contains
 
   function oscilador(u,t) result(f)
     real( kind = 8 ), intent(in) :: u(0:), t
@@ -12,8 +12,13 @@ contains
   function kepler(u,t) result(f)
     real( kind = 8 ), intent(in) :: u(0:), t
     real( kind = 8 ) :: f(0:size(u))
+    
+    real( kind = 8) :: drdt(2), dvdt(2)
+    
+    drdt = u(2:3)
+    dvdt = - u(0:1) / norm2(u(0:1)) ** 3d0
 
-    f = [u(2), u(3), -u(0)/norm2(u(0:1)), -u(1)/norm2(u(0:1))]
+    f = [drdt, dvdt]
   end function
   
   function n_bodies(u,t) result(f)

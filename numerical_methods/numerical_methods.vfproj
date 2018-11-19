@@ -44,11 +44,12 @@
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\euler_explicit.f90"/>
+		<File RelativePath="..\orbit_integrator\cauchy.f90"/>
 		<File RelativePath=".\interfaces.f90"/>
 		<File RelativePath=".\numerical_methods.f90">
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration>
 			<FileConfiguration Name="Debug|x64">
-				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration></File></Filter></Files>
+				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration></File>
+		<File RelativePath=".\rkf45.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>
