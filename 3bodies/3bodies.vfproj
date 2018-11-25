@@ -32,6 +32,7 @@
 		<File RelativePath="..\dislin\disdll_d.lib"/>
 		<File RelativePath="..\dislin\disifc_d.lib"/>
 		<File RelativePath="..\dislin\dislin_d.f90"/></Filter>
-		<File RelativePath=".\3bodies.f90"/></Filter>
+		<File RelativePath=".\3bodies.f90"/>
+		<File RelativePath=".\graphs.f90"/></Filter>
 		<File RelativePath=".\ReadMe.txt"/></Files>
 	<Globals/></VisualStudioProject>
