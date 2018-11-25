@@ -97,17 +97,17 @@ module graphs
 !!! Plot the Poincaré Map from data.
 !!! 
 !!! INPUT:
-!!!     dat(m,2) : inicial condition parameter (dat(:,1)) and
-!!!                 intersection points of orbit with Poincaré plane (dat(:,2))
+!!!     ci     : initial condition.
+!!!     dat(m) : intersection points of orbit with Poincaré plane.
 !!! OUTPUT:
 !!!     None        
-    subroutine poincare_map(dat)
-        double precision, intent(in) :: dat(:,:)
+    subroutine poincare_map(ci, dat)
+        double precision, intent(in) :: ci(:), dat(:)
         
-        integer :: m
+        integer :: m, i
         
-        m = size(dat(:,1))
-        call qplsca(dat(:,1), dat(:,2), m)
+        m = size(dat(:))
+        call qplsca(ci, dat, m)
     end subroutine poincare_map
     
 end module
