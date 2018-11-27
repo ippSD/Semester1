@@ -1,17 +1,3 @@
-!  orbit_integrator.f90 
-!
-!  FUNCTIONS:
-!  orbit_integrator - Entry point of console application.
-!
-
-!****************************************************************************
-!
-!  PROGRAM: orbit_integrator
-!
-!  PURPOSE:  Entry point for the console application.
-!
-!****************************************************************************
-
 program orbit_integrator
 
     use cauchy
