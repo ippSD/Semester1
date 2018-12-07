@@ -1,17 +1,16 @@
 program orbit_integrator
-
     use cauchy
-    use functions
+    use orbit_functions
     use numerical_methods
-    
     implicit none
     
-    integer, parameter :: n = 100
-    real (kind = 8) :: tf = 2.0*acos(-1.0)*365.0*10
-    real (kind = 8) :: u(0:n, 0:3), time(0:n)
+    integer, parameter :: N = 100
+    real, parameter :: PI = acos(-1d0)
+    real :: tf = 2.0 * PI * 365d0 * 10d0
+    real :: u(0:n, 0:3), time(0:n)
     integer :: i
 
-    u(0,:) = [1.0, 0.0, 0.0, 1.0]
+    u(0,:) = [1d0, 0d0, 0d0, 1d0]
     time = [(tf/n*i,i=0,n)]
 
     call cauchy_problem(time, kepler, euler_explicit, u)

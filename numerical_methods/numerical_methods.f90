@@ -17,9 +17,9 @@ module numerical_methods
         !    Output, real ( kind = 8 ) U2, the solution estimate at time T2.
     
         procedure(odes) :: f
-        double precision, intent(in) :: t1, t2, u1(:)
-        double precision, intent(out) :: u2(size(u1))
-        double precision :: dt = 1e-1, u_half(size(u1))
+        real, intent(in) :: t1, t2, u1(:)
+        real, intent(out) :: u2(size(u1))
+        real :: dt = 1e-1, u_half(size(u1))
         
         !allocate(u2(lbound(u1):ubound(u1))
         
@@ -28,9 +28,9 @@ module numerical_methods
     
     recursive subroutine runge_kutta(f, t1, t2, u1, u2)
         procedure(odes) :: f
-        double precision, intent(in) :: t1, t2, u1(:)
-        double precision, intent(out) :: u2(size(u1))
-        double precision :: dt = 1e-1, u_half(size(u1))
+        real, intent(in) :: t1, t2, u1(:)
+        real, intent(out) :: u2(size(u1))
+        real :: dt = 1e-1, u_half(size(u1))
         integer :: m
         
         m = size(u1)

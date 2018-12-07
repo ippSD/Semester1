@@ -4,10 +4,10 @@ module cauchy
 
 contains
   subroutine cauchy_problem(time_domain, differential_operator, temporal_scheme, solution)
-    double precision, intent(in) :: time_domain(0:)  !0:M
+    real, intent(in) :: time_domain(0:)  !0:M
     procedure(odes) :: differential_operator
     procedure(scheme) :: temporal_scheme
-    real (kind = 8), intent(inout) :: solution(0:,:) !0:M (time steps), N(variables)
+    real, intent(inout) :: solution(0:,:) !0:M (time steps), N(variables)
     integer :: m, i
 
     m = size(time_domain) - 1

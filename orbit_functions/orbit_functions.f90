@@ -1,19 +1,19 @@
-module functions
+module orbit_functions
   implicit none
   contains
 
   function oscilador(u,t) result(f)
-    real( kind = 8 ), intent(in) :: u(0:), t
-    real( kind = 8 ) :: f(0:size(u) - 1)
+    real, intent(in) :: u(0:), t
+    real :: f(0:size(u) - 1)
 
     f = [u(1), -u(0)]
   end function
 
   function kepler(u,t) result(f)
-    real( kind = 8 ), intent(in) :: u(0:), t
-    real( kind = 8 ) :: f(0:size(u))
+    real, intent(in) :: u(0:), t
+    real :: f(0:size(u))
     
-    real( kind = 8) :: drdt(2), dvdt(2)
+    real :: drdt(2), dvdt(2)
     
     drdt = u(2:3)
     dvdt = - u(0:1) / norm2(u(0:1)) ** 3d0
@@ -22,11 +22,12 @@ module functions
   end function
   
   function n_bodies(u,t) result(f)
-    double precision, intent(in) :: u(:)
-    double precision, intent(in) :: t
-    double precision :: f(size(u))
-    double precision :: r_i(3), r_j(3), a_i(3)
-    double precision, allocatable :: mu(:)
+    real, intent(in) :: u(:)
+    real, intent(in) :: t
+    real :: f(size(u))
+    
+    real :: r_i(3), r_j(3), a_i(3)
+    real, allocatable :: mu(:)
     integer :: i, j, n
     
     n = size(u) / 7
@@ -56,10 +57,10 @@ module functions
   
   subroutine sub_n_bodies( t, m, u, u_next)
     integer, intent(in) :: m
-    real( kind = 8 ), intent(in) :: t, u(1:m)
-    real( kind = 8 ), intent(out) :: u_next(size(u))
+    real, intent(in) :: t, u(1:m)
+    real, intent(out) :: u_next(size(u))
     
     u_next = n_bodies(u,t)
   end subroutine
   
-end module
+end module orbit_functions
