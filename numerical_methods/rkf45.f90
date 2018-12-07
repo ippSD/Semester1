@@ -46,22 +46,22 @@ subroutine rk4vec ( t0, m, u0, dt, f, u )
 !
   implicit none
 
-  integer ( kind = 4 ) m
+  integer m
 
-  real ( kind = 8 ) dt
-  real ( kind = 8 ) f0(m)
-  real ( kind = 8 ) f1(m)
-  real ( kind = 8 ) f2(m)
-  real ( kind = 8 ) f3(m)
-  real ( kind = 8 ) t0
-  real ( kind = 8 ) t1
-  real ( kind = 8 ) t2
-  real ( kind = 8 ) t3
-  real ( kind = 8 ) u(m)
-  real ( kind = 8 ) u0(m)
-  real ( kind = 8 ) u1(m)
-  real ( kind = 8 ) u2(m)
-  real ( kind = 8 ) u3(m)
+  real dt
+  real f0(m)
+  real f1(m)
+  real f2(m)
+  real f3(m)
+  real t0
+  real t1
+  real t2
+  real t3
+  real u(m)
+  real u0(m)
+  real u1(m)
+  real u2(m)
+  real u3(m)
   procedure(odes) :: f
 !
 !  Get four sample values of the derivative.
@@ -119,18 +119,18 @@ subroutine timestamp ( )
   implicit none
 
   character ( len = 8 ) ampm
-  integer ( kind = 4 ) d
-  integer ( kind = 4 ) h
-  integer ( kind = 4 ) m
-  integer ( kind = 4 ) mm
-  character ( len = 9 ), parameter, dimension(12) :: month = (/ &
+  integer d
+  integer h
+  integer m
+  integer mm
+  character ( len = 9 ), parameter, dimension(12) :: month = [ &
     'January  ', 'February ', 'March    ', 'April    ', &
     'May      ', 'June     ', 'July     ', 'August   ', &
-    'September', 'October  ', 'November ', 'December ' /)
-  integer ( kind = 4 ) n
-  integer ( kind = 4 ) s
-  integer ( kind = 4 ) values(8)
-  integer ( kind = 4 ) y
+    'September', 'October  ', 'November ', 'December ' ]
+  integer n
+  integer s
+  integer values(8)
+  integer y
 
   call date_and_time ( values = values )
 

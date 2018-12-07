@@ -1,58 +1,56 @@
-program $3bodies
-    use functions
-    use numerical_methods
-    use cauchy
+program $3bodies_oop
+    use n_bodies
     use objects
+    use graphs
     implicit none
     
-    integer, parameter :: m = 400, s = 2
-    integer, parameter :: n = s * 7
-    double precision, parameter :: PI = acos(-1d0)
-    double precision, parameter :: PERIOD_MOON = 28d0 * 24d0 * 3600d0
-    double precision, parameter :: MU_EARTH = 3.986d5
-    double precision, parameter :: MU_MOON = 0.049d5
-    double precision, parameter :: A_MOON = (MU_EARTH * (PERIOD_MOON / (2d0 * PI)) ** 2d0) ** (1d0/3d0)
-    double precision, parameter :: V_MOON = 2d0*PI/PERIOD_MOON*A_MOON
-    double precision, parameter :: R0_EARTH = (MU_MOON) / (MU_MOON + MU_EARTH) * A_MOON
-    double precision, parameter :: V0_EARTH = (MU_MOON) / (MU_MOON + MU_EARTH) * V_MOON
-    double precision, parameter :: R0_MOON = A_MOON - R0_EARTH
-    double precision, parameter :: V0_MOON = V_MOON - V0_EARTH
+    logical, parameter :: DO_PLOT = .false.
+    character(len=10), parameter :: FILENAMES(7) = & 
+        ["earth.dat", "moon.dat", &
+         "L1.dat", "L2.dat", "L3.dat", "L4.dat", "L5.dat"]
+    character(len=*), parameter :: INIT_FILE = &
+        "namelist_lagpoints_earthmoon.dat"
+    integer, parameter :: M = 400
     
-    double precision, dimension(s) :: mu =  0d0
-
-    double precision, dimension(3) :: x0e = [ -R0_EARTH, 0d0, 0d0]
-    double precision, dimension(3) :: v0e = [ 0d0, -V0_EARTH, 0d0]
-    double precision, dimension(3) :: x0m = [ R0_MOON, 0d0, 0d0]
-    double precision, dimension(3) :: v0m = [ 0d0, V0_MOON ,0d0]
+    integer :: i, l
+    real :: tf, period, time(0:m)
+    real, target, allocatable :: u(:,:)
+    type(GalaxyPointer) :: mygalaxy(0:M)
     
-    double precision :: tf, time(0:m)
-    double precision, target :: u(0:m,n)
-    integer :: i
-    type(GalaxyPointer) :: mygalaxy(0:m)
-
-    tf = PERIOD_MOON * 20
+    period = 28d0 * 24d0 * 36d2
+    tf = period * 6d0/4d0
+    time = [(tf/M*i,i=0,M)]
     
-    time = [(tf/m*i,i=0,m)]
-    mu(1:2) = [ MU_EARTH, MU_MOON]
+    call calc_lagrange_points(INIT_FILE, time, u)
     
-    u = 0d0
-    u(0,:) = [mu, x0e, x0m, v0e, v0m]
-    !mygalaxy(0) = Galaxy([mu, x0e, x0m, v0e, v0m])
-    
-    do i = 0, m
+    ! For each state of the galaxy over time, each body
+    ! on the galaxy points its state (position, speed, mass)
+    ! to its equivalent on the state vector.
+    do i = 0, M
         call mygalaxy(i)%set_pointer(u(i,:))
     end do
-    !mygalaxy(0).set_pointer(
     
-    call cauchy_problem(time, n_bodies, runge_kutta, u)
-    
-    open(unit=13, file="out.txt", status="REPLACE")
-    do i = 0, m
-        write(13,"(6F)") mygalaxy(i)%bodies(1)%r(1), mygalaxy(i)%bodies(1)%r(2), mygalaxy(i)%bodies(1)%r(3), &
-                         mygalaxy(i)%bodies(2)%r(1), mygalaxy(i)%bodies(2)%r(2), mygalaxy(i)%bodies(2)%r(3)
+    do l = 1, 7
+        open(unit=13, file=trim(FILENAMES(l)), status="REPLACE")
+        call save_body_orbit(13, u, l)
     end do
-    close(13)
+    
+    if (DO_PLOT) then
+        call plots(u)
+    end if
 
     contains
     
-end program $3bodies
+    subroutine plots(u)
+        real, intent(in) :: u(0:,:)
+        
+        call plot_orbit_xy(u, 1)
+        call plot_orbit_xy(u, 2)
+        call plot_orbit_xy(u, 3)
+        call plot_orbit_xy(u, 4)
+        call plot_orbit_xy(u, 5)
+        call plot_orbit_xy(u, 6)
+        call plot_orbit_xy(u, 7)
+    end subroutine plots
+    
+end program $3bodies_oop

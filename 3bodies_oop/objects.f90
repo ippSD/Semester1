@@ -10,15 +10,15 @@ module objects
     end interface Galaxy
     
     type Body
-        double precision :: mass
-        double precision, dimension(3) :: r, v, a
+        real :: mass
+        real :: r(3), v(3), a(3)
     contains
     end type Body
     
     type :: BodyPointer
-        double precision, pointer :: mass
-        double precision, pointer :: r(:), v(:)
-        double precision, dimension(3) :: a
+        real, pointer :: mass
+        real, pointer :: r(:), v(:)
+        real :: a(3)
     end type BodyPointer
     
     type Galaxy
@@ -37,7 +37,7 @@ module objects
     contains
     
     function body_constructor(init_vector) result(this)
-        double precision, dimension(7), intent(in) :: init_vector
+        real, intent(in) :: init_vector(7)
         type(Body) :: this
         
         this%mass = init_vector(1)
@@ -48,12 +48,12 @@ module objects
     end function body_constructor
     
     function galaxy_constructor(init_vector) result(this)
-        double precision, intent(in) :: init_vector(:)
+        real, intent(in) :: init_vector(:)
         type(Galaxy) :: this
         
         integer :: i, n, s
-        double precision :: mass_i
-        double precision, dimension(3) :: r_i, v_i
+        real :: mass_i
+        real :: r_i(3), v_i(3)
         
         s = size(init_vector)
         
@@ -98,7 +98,7 @@ module objects
     
     subroutine set_pointer(this, t)
         class(GalaxyPointer) :: this
-        double precision, target, intent(in) :: t(:)
+        real, target, intent(in) :: t(:)
         
         integer :: i, n
         
@@ -116,7 +116,7 @@ module objects
         class(GalaxyPointer) :: this
         
         integer :: i, j, n
-        double precision, dimension(3) :: a_i
+        real :: a_i(3)
         type(BodyPointer) :: body_i, body_j
         
         n = size(this%bodies)/7
