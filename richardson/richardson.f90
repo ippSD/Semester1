@@ -1,22 +1,24 @@
 program richardson
-    use n_bodies
+    !use n_bodies
+    use orbit_functions
     use numerical_methods
     use dislin
+
     !use orbit_functions only: f_n_bodies => n_bodies
     implicit none
     
-    logical, parameter :: DO_PLOT = .false., DO_EXAMPLE = .true.
+    logical, parameter :: DO_PLOT = .false., DO_EXAMPLE = .false.
     character(len=10), parameter :: FILENAMES(7) = & 
         ["earth.dat", "moon.dat", &
          "L1.dat", "L2.dat", "L3.dat", "L4.dat", "L5.dat"]
     character(len=*), parameter :: INIT_FILE = &
         "namelist_lagpoints_earthmoon.dat"
     integer, parameter :: M = 1
-    real, parameter :: DT = 1d2;
+    real, parameter :: DT = 1d-1;
     
     integer :: i, l
     real :: tf, period, u(7*7)
-    real, allocatable :: k_rchs(:), u0(:)
+    real, allocatable :: k_rchs(:), u0(:), k_rchs2(:)
     
     if (DO_EXAMPLE) then
         call example()
@@ -24,41 +26,39 @@ program richardson
         
         tf = 1d-5
     
-        call init_lagrange_statevector(INIT_FILE, u, period)
+        !call init_lagrange_statevector(INIT_FILE, u, period)
     
-        allocate(u0(3*7))
-        u0( 1: 3) = u(1:3)
-        u0( 4:12) = u(1*7+1:1*7+9)
-        u0(13:21) = u(4*7+1:4*7+9)
+        !allocate(u0(3*7))
+        !u0( 1: 3) = u(1:3)
+        !u0( 4:12) = u(1*7+1:1*7+9)
+        !u0(13:21) = u(4*7+1:4*7+9)
         
-        call richardson_extrapolation(differential_operator = f_n_bodies, &
+        !deallocate(u0)
+        allocate(u0(4))
+        u0 = [1.0d0, 0.0d0, 0.0d0, 1.0d0]
+        
+        call richardson_extrapolation(differential_operator = kepler, &
             temporal_scheme = runge_kutta, &
             t0 = 0d0, &
-            tf = period * 1.5d0, &
+            tf = 1000d0, &
             dt= DT, &
             u0 = u0, &
             epsilon0 = 1d3, &
             k = k_rchs)
+        call richardson_extrapolation(differential_operator = kepler, &
+            temporal_scheme = runge_kutta, &
+            t0 = 0d0, &
+            tf = 1000d0, &
+            dt= DT/2.0d0, &
+            u0 = u0, &
+            epsilon0 = 1d3, &
+            k = k_rchs2)
     
-        call qplot([((i*DT)/period*1d2,i=1,size(k_rchs))], k_rchs, size(k_rchs))
+        call qplot([((i*DT),i=1,size(k_rchs))], k_rchs, size(k_rchs))
         deallocate(k_rchs)
-    
-        u0( 1: 3) = u(1:3)
-        u0( 4: 9) = u(1*7+1:1*7+6)
-        u0(10:12) = u(1*7+(4-1)*3+1:1*7+(4-1)*3+3)
-        u0(13:18) = u(4*7+1:4*7+6)
-        u0(19:21) = u(4*7+(4-1)*3+1:4*7+(4-1)*3+3)
         
-        call richardson_extrapolation(differential_operator = f_n_bodies, &
-            temporal_scheme = runge_kutta, &
-            t0 = 0d0, &
-            tf = period * 1.5d0, &
-            dt= DT, &
-            u0 = u0, &
-            epsilon0 = 1d3, &
-            k = k_rchs)
-    
-        call qplot([((i*DT)/period*1d2,i=1,size(k_rchs))], k_rchs, size(k_rchs))
+        call qplot([((i*DT/2.0d0),i=1,size(k_rchs2))], k_rchs2, size(k_rchs2))
+        deallocate(k_rchs2)
         
     end if
 
@@ -95,7 +95,7 @@ program richardson
             call temporal_scheme(differential_operator, t0+(2*i+1)*dt/2d0,t0+(2*i+2)*dt/2d0, s2, s2)
             !write(*,*) "Sol_2 en i=", i+2, ": ", s2, "\n"
             
-            k(i+1) = norm2(s1 - s2) / (1d0 - 2d0 ** (-4d0)) * dt ** (-4d0)
+            k(i+1) = norm2(s1 - s2) / (1d0 - 2d0 ** (-4d0))! * dt ** (-4d0)
 
             !write(*,*) k(i+1)
             !read(*,*)
