@@ -1,7 +1,7 @@
 program $3bodies_oop
     use n_bodies
     use objects
-    use graphs
+    !use graphs
     implicit none
     
     logical, parameter :: DO_PLOT = .false.
