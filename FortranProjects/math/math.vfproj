@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="11.0" ProjectIdGuid="{347B2F82-3B95-42FC-BA41-8F336218FA8E}">
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="11.0" ProjectIdGuid="{36151BAF-D13E-4DF0-A03F-5F4F4C13E2B6}">
 	<Platforms>
 		<Platform Name="Win32"/></Platforms>
 	<Configurations>
@@ -25,11 +25,5 @@
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<Filter Name="dislin">
-		<File RelativePath="..\dislin\disdll_d.dll"/>
-		<File RelativePath="..\dislin\disdll_d.lib"/>
-		<File RelativePath="..\dislin\disifc_d.lib"/>
-		<File RelativePath="..\dislin\dislin_d.f90"/></Filter>
-		<File RelativePath=".\graphs_n_bodies.f90"/>
-		<File RelativePath=".\n_bodies.f90"/></Filter></Files>
+		<File RelativePath=".\math.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

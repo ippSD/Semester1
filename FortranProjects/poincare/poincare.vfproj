@@ -32,8 +32,6 @@
 		<File RelativePath="..\dislin\disdll_d.lib"/>
 		<File RelativePath="..\dislin\disifc_d.lib"/>
 		<File RelativePath="..\dislin\dislin_d.f90"/></Filter>
-		<File RelativePath=".\graphs.f90"/>
-		<File RelativePath="..\3bodies_oop\namelist_lagpoints_earthmoon.dat"/>
 		<File RelativePath=".\poincare.f90"/></Filter>
 		<File RelativePath=".\ReadMe.txt"/></Files>
 	<Globals/></VisualStudioProject>

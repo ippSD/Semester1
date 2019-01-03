@@ -1,8 +1,0 @@
-=?
-&lagpoints_earthmoon ! Earth-Moon Lagrange points [km^3/s^2]\
-mu_1 = 3.986d5,      ! Greatest body's MU (EARTH) [km^3/s^2]\
-mu_2 = 0.049d5,      ! Smaller body's  MU (MOON)  [km^3/s^2]\
-sma = 3.844d5,       ! Semi mayor axis' length [km] \
-! Lagrange points' position on polar coordinates with Earth at its center.\
-l_sma(1:5) =  84.9100d-2, 116.7800d-2, 99.2916d-2, 1d0, 1d0,
-l_ang(1:5) = 0d0, 0d0, 180d0, 60d0, -60d0\

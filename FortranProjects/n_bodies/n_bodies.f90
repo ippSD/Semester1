@@ -1,8 +1,8 @@
 module n_bodies
     use orbit_functions, only : f_n_bodies => n_bodies
-    use numerical_methods
-    use cauchy
-    use auxiliary_functions
+    use numerical_methods, only: runge_kutta
+    use cauchy, only: cauchy_problem
+    use math
     implicit none
     real, parameter :: PI = acos(-1d0)
     contains
@@ -110,12 +110,12 @@ module n_bodies
         omega_sys = sqrt(mu_1/sma**3d0)        
         p = 2*PI/omega_sys
                 
-        v0_1 = [0d0, 0d0, omega_sys] .vec. x0_1
-        v0_2 = [0d0, 0d0, omega_sys] .vec. x0_2
+        v0_1 = [0d0, 0d0, omega_sys] .times. x0_1
+        v0_2 = [0d0, 0d0, omega_sys] .times. x0_2
                 
         do i = 1, 5
             x0_l(i,:) = sma*l_sma(i)*[cosd(l_ang(i)),sind(l_ang(i)),0d0]+x0_1
-            v0_l(i,:) = [0d0, 0d0, omega_sys] .vec. x0_l(i,:)
+            v0_l(i,:) = [0d0, 0d0, omega_sys] .times. x0_l(i,:)
         end do
         mu = 0d0
         mu(1:2) = [mu_1, mu_2]

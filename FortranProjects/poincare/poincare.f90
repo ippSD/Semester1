@@ -1,19 +1,16 @@
 program poincare
+    use lagrange_points
     use n_bodies
-!    use graphs
     implicit none
     
     logical, parameter :: DO_PLOT = .true.
-    character(len=*), parameter :: INIT_FILE = &
-        "namelist_lagpoints_earthmoon.dat"
     integer, parameter :: M = 400, S = 7
     integer, parameter :: N = 7 * S
-    real, allocatable :: u0(:,:)
-
-    call calc_lagrange_points(INIT_FILE, [0d0], u0)    
-    
+    real, allocatable :: u0(:)
+        
+    call lagrange_points2initial_conditions(LP_EARTH_MOON, u0)
     if (DO_PLOT) then
-        call plots(u0(0,:))
+        call plots(u0)
     end if
 
     contains
@@ -25,9 +22,9 @@ program poincare
         integer :: i, l
         real :: tf, period, time(0:m), eps_x(NN), eps_vy(NN)
         
-        period = 28d0 * 24d0 * 36d2
+        period = T_MOON
         tf = period * 6d0/4d0
-        time = [(tf/M*i,i=0,M)]
+        time = [(i*tf/M,i=0,M)]
         eps_x  = [( EPS_X_MAX*(i-(NN-1d0))/(NN-1d0),i=0,NN-1)]
         eps_vy = [(EPS_VY_MAX*(i-(NN-1d0))/(NN-1d0),i=0,NN-1)]
         
