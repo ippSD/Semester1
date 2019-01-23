@@ -14,7 +14,7 @@ module hamiltonian_functions
         f = [p, 3d0*x-x**3d0+2d0]
     end function
     
-    function kepler(u,t) result(f)
+    function oscilator(u, t) result(f)
         real, intent(in) :: u(:), t
         real :: f(size(u))
     

@@ -1,5 +1,5 @@
 module orbit_plots
-    use dislin
+    use dislin_mod
     implicit none
     contains
     
@@ -48,7 +48,7 @@ module orbit_plots
         x_idx = nbodies + (l-1) * 3       + 1
         !       mases   + previous bodies + X coor.
         
-        call qplot(u(:, x_idx), u(:, x_idx + 1), m)
+        call plot(u(:, x_idx), u(:, x_idx + 1))
         !call qplot(time, v_cg(:,1), m)  ! VXcg
     end subroutine plot_orbit_xy
 
@@ -81,7 +81,7 @@ module orbit_plots
             cdg = cdg + u(1,l) * u(:,x_idx:x_idx+2) / sum(u(1,1:nbodies))
         end do
         
-        call qplot(cdg(:,1), cdg(:,2), m)
+        call plot(cdg(:,1), cdg(:,2))
     end subroutine plot_cdg_xy
 
 

@@ -45,7 +45,7 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\cauchy.f90"/>
-		<File RelativePath=".\interfaces.f90"/>
+		<File RelativePath=".\ode_interfaces.f90"/>
 		<File RelativePath=".\numerical_methods.f90">
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration>

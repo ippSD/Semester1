@@ -28,5 +28,6 @@
 		<File RelativePath=".\disdll_d.dll"/>
 		<File RelativePath=".\disdll_d.lib"/>
 		<File RelativePath=".\disifc_d.lib"/>
-		<File RelativePath=".\dislin_d.f90"/></Filter></Files>
+		<File RelativePath=".\dislin_d.f90"/>
+		<File RelativePath=".\dislin_mod.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

@@ -1,5 +1,5 @@
 module rkf45
-    use interfaces
+    use ode_interfaces
     implicit none
     contains
     
@@ -62,7 +62,7 @@ subroutine rk4vec ( t0, m, u0, dt, f, u )
   real u1(m)
   real u2(m)
   real u3(m)
-  procedure(odes) :: f
+  procedure(ode_function) :: f
 !
 !  Get four sample values of the derivative.
 !
