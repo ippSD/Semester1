@@ -1,6 +1,7 @@
 module numerical_methods
     use rkf45
-    use non_Linear_Systems, only: newton
+    use Linear_Systems
+    use Non_Linear_Systems
     use ode_interfaces, only: ode_function
     implicit none
     

@@ -48,8 +48,41 @@ module orbit_check
             write(*,*) "State vector should be size '7N' with"
             write(*,*) "'N' being the number of bodies"
             f = .false.
-        end
+        end if
     end function check_state_vector
+    
+    !-----------------------------------------------------------------------!
+    !   ( FUNCTION ) check_existing_body                                    !
+    !-----------------------------------------------------------------------!
+    !   Checks if the selected bodystate vector is compatible with the orbit functions   !
+    !   of this repo.                                                       !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) u                                           !
+    !               ! State vector to be checked.                           !
+    !---------------!-------------------------------------------------------!
+    !   OUT         ! (logical) f                                           !
+    !               ! True if vector is valid, else false.                  !
+    !---------------!-------------------------------------------------------!
+    logical function check_existing_body(u, l) result(f)
+        real, intent(in) :: u(:)
+        integer, intent(in) :: l
+        integer :: n
+        
+        f = .false.
+        
+        if ( check_state_vector(u) ) then
+            n = size(u) / 7
+            if ( 0 < l .and. l <= n ) then
+                f = .true.
+            else
+                write(*,*) "Error: invalid body number."
+                write(*,*) "Maximum body index: ", n
+                write(*,*) "Current: ", l
+            end if
+        end if
+    end function check_existing_body
 
 
 end module orbit_check

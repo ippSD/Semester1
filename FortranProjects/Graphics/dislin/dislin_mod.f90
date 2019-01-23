@@ -4,20 +4,38 @@ module dislin_mod
     
     contains
     
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot_end                                             !
+    !-----------------------------------------------------------------------!
+    !   Ends the currently running dislin plot.                             !
+    !-----------------------------------------------------------------------!
     subroutine plot_end()
         call disfin()
     end subroutine
     
-    subroutine plot_legend(curves, legend_title)
-        character(len=*), intent(in) :: curves(:)
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot_legend                                          !
+    !-----------------------------------------------------------------------!
+    !   Plots the legend on the currently running dislin plot.              !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character(N)) legends                                !
+    !               ! character vector containing the legend's entries.   !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) legend_title                              !
+    !   OPTIONAL    ! Legend title, "Legend" by default.                    !
+    !---------------!-------------------------------------------------------!
+    subroutine plot_legend(legends, legend_title)
+        character(len=*), intent(in) :: legends(:)
         character(len=*), optional :: legend_title
         character(len=:), allocatable :: buffer
         
         integer :: n_lines, string_length, i
         character(len=6) :: default_legend = "Legend"
         
-        n_lines = size(curves)
-        string_length = len(curves(1))
+        n_lines = size(legends)
+        string_length = len(legends(1))
         write(*,*) n_lines, string_length
         allocate(character(n_lines * string_length) :: buffer)
         
@@ -25,7 +43,7 @@ module dislin_mod
         
         do i = 1, n_lines
             write(*,*) buffer
-            call leglin(buffer, curves(i), i)
+            call leglin(buffer, legends(i), i)
         end do
         
         if(present(legend_title)) then
@@ -39,6 +57,20 @@ module dislin_mod
         
     end subroutine
     
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot_title                                           !
+    !-----------------------------------------------------------------------!
+    !   Plots the title on the currently running dislin plot.               !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) tit                                       !
+    !               ! Title of the plot.                                    !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (integer) plot_level                                  !
+    !   OPTIONAL    ! Row on which the title is plotted  starting from      !
+    !               ! the top: 1 -> top, 2 -> under the top, etc.           !
+    !---------------!-------------------------------------------------------!
     subroutine plot_title(tit, plot_level)
         character(len=*), intent(in) :: tit
         integer, optional :: plot_level
@@ -52,21 +84,62 @@ module dislin_mod
         call title()
     end subroutine plot_title
     
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot_subtitle                                        !
+    !-----------------------------------------------------------------------!
+    !   Plots the subtitle on the currently running dislin plot.            !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) subtit                                    !
+    !               ! Subtitle of the plot.                                 !
+    !---------------!-------------------------------------------------------!
     subroutine plot_subtitle(subtit)
         character(len=*), intent(in) :: subtit
         
-        integer :: level
-        call getlev(level)
-        if(level > 0) call titlin(subtit, 2)
-        
-        call color('FORE')
-        call title()
-    end subroutine plot_subtitle
-        
+        call plot_title(subtit, 2)
+    end subroutine plot_subtitle 
     
-    subroutine plot(x, y, plotcolor, xlabel, ylabel, subtitle, plottitle, file_name, hold_on)
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot                                                 !
+    !-----------------------------------------------------------------------!
+    !   Plots (x,y) curves with Matlab style.                               !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) x                                           !
+    !               ! X-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) y                                           !
+    !               ! Y-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) plotcolor                                 !
+    !   OPTIONAL    ! Color of the curve. Available colors are:             !
+    !               ! 'BLACK', 'RED', 'GREEN', 'BLUE', 'CYAN', 'YELLOW',    !
+    !               ! 'ORANGE', 'MAGENTA', 'WHITE', 'FORE' (default),       !
+    !               ! 'BACK' (background), 'GRAY' and                       !
+    !               ! 'HALF' (half intensity of foreground)                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) xlabel                                    !
+    !   OPTIONAL    ! Title of the X-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !   OPTIONAL    ! Title of the Y-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !   OPTIONAL    ! Title of the Y-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) file_name                                 !
+    !   OPTIONAL    ! Filename in which the plot is saved.                  !
+    !               ! File type goes according to filename extension.       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) hold_on                                     !
+    !   OPTIONAL    ! Does not close the plot on exit,                      !
+    !               ! allowing multiple plots.                              !
+    !---------------!-------------------------------------------------------!
+    subroutine plot(x, y, plotcolor, xlabel, ylabel, file_name, hold_on)
         real :: x(:), y(:)
-        character(len=*), optional :: plotcolor, xlabel, ylabel, plottitle, subtitle, file_name
+        character(len=*), optional :: plotcolor, xlabel, ylabel, file_name
         logical, optional :: hold_on
         
         integer :: i, ic, level, filename_len
@@ -92,7 +165,11 @@ module dislin_mod
                     ic = ichar(extension(i:i))
                     if (ic >= 65 .and. ic < 90) extension(i:i) = char(ic+32) 
                 end do
-                call metafl(extension)
+                if ( extension(1:1) == '.' ) then
+                    call metafl(trim(extension(2:3)))
+                else
+                    call metafl(extension)
+                end if
                 call setfil(file_name)
             else
                 call metafl('CONS')
@@ -106,22 +183,19 @@ module dislin_mod
             call axspos(450,1800)
             call axslen(2200,1200)
             
-            ic=intrgb(0.95,0.95,0.95)
-            call axsbgd(ic)
+            if(present(xlabel)) call name(xlabel, 'X')
+            if(present(ylabel)) call name(ylabel, 'Y')
+            
+            !ic=intrgb(0.95,0.95,0.95)
+            !call axsbgd(ic)
             
             call graf(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep)
             call setrgb(0.7,0.7,0.7)
             call grid(1,1)
-            
-            if(present(xlabel)) call name(xlabel, 'X')
-            if(present(ylabel)) call name(ylabel, 'Y')
-            
+                        
             !call labdig(-1,'X')
             !call tics(10,'XY')
         
-            if(present(plottitle)) call plot_title(plottitle)
-            if(present(subtitle)) call plot_subtitle(subtitle)
-
         end if
         
         if(present(plotcolor)) call color(plotcolor)

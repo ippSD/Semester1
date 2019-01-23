@@ -51,5 +51,6 @@
 				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration>
 			<FileConfiguration Name="Debug|x64">
 				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration></File>
+		<File RelativePath=".\richardson_extrapolation.f90"/>
 		<File RelativePath=".\rkf45.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

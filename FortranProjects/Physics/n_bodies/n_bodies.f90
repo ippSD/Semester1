@@ -21,7 +21,12 @@ module n_bodies
         allocate(u(0:m,n))
         
         u(0,:) = initial_conditions
-        call cauchy_problem(time_domain = time_domain, differential_operator = f_n_bodies, temporal_scheme = runge_kutta, solution = u)
+        call cauchy_problem( &
+            time_domain           = time_domain  , &
+            differential_operator = f_n_bodies   , &
+            temporal_scheme       = runge_kutta_4, &
+            solution              = u              &
+        )
     end subroutine calc_n_bodies
     
 end module n_bodies
