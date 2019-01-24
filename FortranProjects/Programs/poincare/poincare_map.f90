@@ -13,7 +13,7 @@ program poincare_map
     implicit none
     
     logical, parameter :: DO_PLOT = .true.
-    integer, parameter :: M = 400, S = 7
+    integer, parameter :: M = 300, S = 7
     integer, parameter :: N = 7 * S
     real, allocatable :: u0(:)
         
@@ -26,35 +26,50 @@ program poincare_map
     
     subroutine plots(u0)
         real, intent(in) :: u0(:)
-        integer, parameter :: NN = 501
-        real, parameter :: EPS_X_MAX = 1d4, EPS_VY_MAX = 2d0
-        integer :: i, l
-        real :: tf, period, time(0:m), eps_x(NN), eps_vy(NN)
+        integer, parameter :: NN = 800
+        real, parameter :: EPS_X_MAX = 1d4, EPS_VY_MAX = 1.5d-1
+        integer :: i, j, l
+        real :: tf, period, time(0:m)
+        real, target :: eps(NN, 2)
+        real, pointer :: eps_x(:), eps_vy(:)
+        character ( len = 35 ) :: titles(2,2)
+        character ( len = 18 ) :: xlabels(2)
         
-        integer :: plot_bodies(2) = [1, 4] + 2
+        integer :: plot_bodies(2) = [1, 4] + 2    ! L1, L4
+        integer :: disturbed_indexes(2) = [1, 5]  !  X, VY
         
         period = T_MOON
         tf = period * 6d0/4d0
         time = [(i*tf/M,i=0,M)]
         
         ! Set disturvance on initial values X and VY
-        eps_x  = [( EPS_X_MAX*(i-(NN-1d0))/(NN-1d0),i=0,NN-1)]
-        eps_vy = [(EPS_VY_MAX*(i-(NN-1d0))/(NN-1d0),i=0,NN-1)]
+        eps_x  => eps(:,1)
+        eps_vy => eps(:,2)
+        eps_x  = [( EPS_X_MAX*(i-NN/2d0)/NN*2d0,i=0,NN)]
+        eps_vy = [(EPS_VY_MAX*(i-NN/2d0)/NN*2d0,i=0,NN)]
         
-        call plot_poincare(                 &
-            time                          , &
-            eps_x                         , &
-            u0                            , &
-            7+(3-1)*3+1                   , &
-            3                             , &
-            "$X\ [km]$"                   , &
-            "L1 Lag. Point Poincare over X" &
-        )
-            
+        ! Set plot parameters
+        titles(1,1) = "$L_1$ Poincare Map VS $X_0$"
+        titles(2,1) = "$L_4$ Poincare Map VS $X_0$"
+        titles(1,2) = "$L_1$ Poincare Map VS $V_{Y0}$"
+        titles(2,2) = "$L_4$ Poincare Map VS $V_{Y0}$"
+        xlabels = ["$\Delta X$ $[%]$", "$\Delta V_Y$ $[%]$"]
         
-        call plot_poincare(time, eps_vy, u0, 4*7+(3-1)*3+2, 3)  ! Poincare on L1, VY0_L1
-        call plot_poincare(time, eps_x,  u0,   7+(6-1)*3+1, 6)  ! Poincare on L4, X0_L4
-        call plot_poincare(time, eps_vy, u0, 4*7+(6-1)*3+2, 6)  ! Poincare on L4, VY0_L4 
+        loop_lagrange_point: do i = 1, 2
+            loop_disturbed_index: do j = 1, 2
+                
+                call plot_poincare(       &
+                    time                , &
+                    eps(:,j)            , &
+                    u0                  , &
+                    disturbed_indexes(j), &
+                    plot_bodies(i)      , &
+                    xlabel = xlabels(j) , &
+                    title = titles(i,j)   &
+                )
+            end do loop_disturbed_index
+        end do loop_lagrange_point
+
     end subroutine
     
     !-----------------------------------------------------------------------!
@@ -74,9 +89,10 @@ program poincare_map
     !   IN          ! (real(N)) design_initial_conditions                   !
     !               ! Undisturbed initial conditions.                       !
     !---------------!-------------------------------------------------------!
-    !   IN          ! (integer) var_idx                                     !
+    !   IN          ! (integer) eps_idx                                     !
     !               ! Index of the state vector whose initial condition     !
-    !               ! will be disturbed.                                    !
+    !               ! will be disturbed:                                    !
+    !               ! 1 => X, 2 => Y, 3 => Z, 4 => VX, 5 => VY, 6 => VZ     !
     !---------------!-------------------------------------------------------!
     !   IN          ! (integer) body_idx                                    !
     !               ! Body whose Poincare Map will be draw.                 !
@@ -85,17 +101,17 @@ program poincare_map
             time_domain              , &
             eps                      , &
             design_initial_conditions, &
-            var_idx                  , &
+            eps_idx                  , &
             body_idx                 , &
             title                    , &
             xlabel                     &
         )
-        integer, intent(in) :: var_idx, body_idx
+        integer, intent(in) :: eps_idx, body_idx
         real, intent(in) :: time_domain(0:)
         real, intent(in) :: eps(:), design_initial_conditions(:)
         character( len = * ), intent(in) :: xlabel, title
         
-        integer :: i, m, n, s, l, q_i, q_last
+        integer :: i, m, n, s, l, q_i, q_last, var_idx
         real, allocatable :: u0(:), x_poincare(:,:), temp(:,:), temp2(:,:)
         real, allocatable, target :: u(:,:)
         real, pointer :: r_body(:,:)
@@ -104,6 +120,14 @@ program poincare_map
         n = size(design_initial_conditions)
         s = n / 7
         l = size(eps)
+        ! Skip mass indexes: +s
+        var_idx = s
+        ! Tab component index: X||VX => +1, Y||VY => +2, Z||VZ => +3
+        var_idx = var_idx + eps_idx - 3 * int((eps_idx - 1) / 3)
+        ! Tab component type: X||Y||Z => +0, VX||VY||VZ => +3s
+        var_idx = var_idx + 3 * s * int((eps_idx - 1) / 3)
+        ! Tab selected body: 3*(body - 1)
+        var_idx = var_idx + 3 * (body_idx - 1)
         
         allocate(u0(n))
         
@@ -140,7 +164,7 @@ program poincare_map
         end do
         
         call scatter (           &
-                x_poincare(:,1), &
+                (x_poincare(:,1) / design_initial_conditions(var_idx) - 1d0) * 1d2, &
                 x_poincare(:,2), &
                 "RED"          , &
                 xlabel = xlabel, &

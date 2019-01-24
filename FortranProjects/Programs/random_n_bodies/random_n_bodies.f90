@@ -13,7 +13,7 @@ program random_n_bodies
     implicit none
     
     integer, parameter :: BODIES = 800
-    integer, parameter :: M = 800
+    integer, parameter :: M = 100
     integer, parameter :: N = BODIES * 7
     
     integer :: i
@@ -37,7 +37,7 @@ program random_n_bodies
     ! Velocities of order 1E0 km/s
     u0(4*BODIES+1:7*BODIES) = u0(4*BODIES+1:7*BODIES) * 5d-1
     
-    nullify_z_coordinates: do i = 1, N
+    nullify_z_coordinates: do i = 1, BODIES
         call pointer_to_body_position(u0, i, r)
         r(3) = 0d0
         nullify(r, v)

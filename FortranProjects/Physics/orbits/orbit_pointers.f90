@@ -66,7 +66,6 @@ module orbit_pointers
         n = size(state_vector) / 7
         lower_idx = 4*n+3*(l-1)+1
         upper_idx = lower_idx + 2
-        
         v_pointer => state_vector(lower_idx:upper_idx)
     end subroutine
     

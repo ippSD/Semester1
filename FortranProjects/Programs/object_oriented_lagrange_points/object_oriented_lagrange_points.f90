@@ -10,7 +10,7 @@ program object_oriented_lagrange_points
     use n_bodies!, only: f_n_bodies, cauchy_problem, runge_kutta
     use orbit_plots!, only: plot_orbit_xy
     use orbit_exports
-    use lagrange_points
+    use orbit_lagrange_points
     use objects!, only: GalaxyPointer
     implicit none
     
@@ -75,13 +75,13 @@ program object_oriented_lagrange_points
         integer :: p
         
         ! Plot main bodies
-        call plot_orbit_xy(u, 1)
-        call plot_orbit_xy(u, 2)
+        call plot_orbit_xy(u, 1, "EARTH")
+        call plot_orbit_xy(u, 2, "MOON")
         
         ! Plot Lagrange Points
         p = size(u(0,:))/7 - 2
         do i = 1, p
-            call plot_orbit_xy(u, i+2)
+            call plot_orbit_xy( u, i+2, FILENAMES(i+2) )
         end do
     end subroutine plots
     

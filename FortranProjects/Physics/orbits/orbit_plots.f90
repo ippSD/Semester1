@@ -27,9 +27,10 @@ module orbit_plots
 !!!     l : body to be plotted. 0 < l <= n/7
 !!! OUTPUT:
 !!!     None
-    subroutine plot_orbit_xy(u, l)
+    subroutine plot_orbit_xy(u, l, title)
         integer, intent(in) :: l
         real, intent(in) :: u(:,:)  ! u(m,n)
+        character(len=*), optional :: title
 
         integer :: m, n, nbodies, x_idx
         
@@ -48,8 +49,13 @@ module orbit_plots
         x_idx = nbodies + (l-1) * 3       + 1
         !       mases   + previous bodies + X coor.
         
-        call plot(u(:, x_idx), u(:, x_idx + 1))
-        !call qplot(time, v_cg(:,1), m)  ! VXcg
+        if(present(title)) then
+            call plot(u(:, x_idx), u(:, x_idx + 1), hold_on = .true.)
+            call plot_title(title)
+            call plot_end()
+        else
+            call plot(u(:, x_idx), u(:, x_idx + 1))
+        end if
     end subroutine plot_orbit_xy
 
 !!! PLOT_CDG_XY
