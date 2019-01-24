@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{E76C9EE2-EA44-4DA8-A8D1-806354CFCD58}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>GmatUtil</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;EXTERNAL_TEMPLATE_DEFINITION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./include;./;./util;./util/interpolator;./util/matrixoperations;./util/datawriter</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="util\A1Date.hpp" />
+    <ClInclude Include="util\A1Mjd.hpp" />
+    <ClInclude Include="util\AngleUtil.hpp" />
+    <ClInclude Include="util\ArrayTemplate.hpp" />
+    <ClInclude Include="util\AttitudeConversionUtility.hpp" />
+    <ClInclude Include="util\AttitudeUtil.hpp" />
+    <ClInclude Include="util\BaseException.hpp" />
+    <ClInclude Include="util\BodyFixedStateConverter.hpp" />
+    <ClInclude Include="util\CalculationUtilities.hpp" />
+    <ClInclude Include="util\CCSDSAEMEulerAngleSegment.hpp" />
+    <ClInclude Include="util\CCSDSAEMQuaternionSegment.hpp" />
+    <ClInclude Include="util\CCSDSAEMReader.hpp" />
+    <ClInclude Include="util\CCSDSAEMSegment.hpp" />
+    <ClInclude Include="util\CCSDSEMReader.hpp" />
+    <ClInclude Include="util\CCSDSEMSegment.hpp" />
+    <ClInclude Include="util\CCSDSEMWriter.hpp" />
+    <ClInclude Include="util\CCSDSOEMSegment.hpp" />
+    <ClInclude Include="util\CCSDSOEMWriter.hpp" />
+    <ClInclude Include="util\Code500EphemerisFile.hpp" />
+    <ClInclude Include="util\ColorDatabase.hpp" />
+    <ClInclude Include="util\ColorTypes.hpp" />
+    <ClInclude Include="util\datawriter\DataBucket.hpp" />
+    <ClInclude Include="util\datawriter\DataWriter.hpp" />
+    <ClInclude Include="util\datawriter\DataWriterInterface.hpp" />
+    <ClInclude Include="util\datawriter\DataWriterMaker.hpp" />
+    <ClInclude Include="util\datawriter\WriterData.hpp" />
+    <ClInclude Include="util\Date.hpp" />
+    <ClInclude Include="util\DateUtil.hpp" />
+    <ClInclude Include="util\ElapsedTime.hpp" />
+    <ClInclude Include="util\EopFile.hpp" />
+    <ClInclude Include="util\Ephemeris.hpp" />
+    <ClInclude Include="util\FileManager.hpp" />
+    <ClInclude Include="util\FileTypes.hpp" />
+    <ClInclude Include="util\FileUtil.hpp" />
+    <ClInclude Include="util\Frozen.hpp" />
+    <ClInclude Include="util\GmatConstants.hpp" />
+    <ClInclude Include="util\GmatDefaults.hpp" />
+    <ClInclude Include="util\GmatGlobal.hpp" />
+    <ClInclude Include="util\GmatTime.hpp" />
+    <ClInclude Include="util\GravityFileUtil.hpp" />
+    <ClInclude Include="util\GregorianDate.hpp" />
+    <ClInclude Include="util\IFileUpdater.hpp" />
+    <ClInclude Include="util\interpolator\BrentDekkerZero.hpp" />
+    <ClInclude Include="util\interpolator\CubicSplineInterpolator.hpp" />
+    <ClInclude Include="util\interpolator\HermiteInterpolator.hpp" />
+    <ClInclude Include="util\interpolator\Interpolator.hpp" />
+    <ClInclude Include="util\interpolator\InterpolatorException.hpp" />
+    <ClInclude Include="util\interpolator\LagrangeInterpolator.hpp" />
+    <ClInclude Include="util\interpolator\LinearInterpolator.hpp" />
+    <ClInclude Include="util\interpolator\NotAKnotInterpolator.hpp" />
+    <ClInclude Include="util\LeapSecsFileReader.hpp" />
+    <ClInclude Include="util\Linear.hpp" />
+    <ClInclude Include="util\matrixoperations\CholeskyFactorization.hpp" />
+    <ClInclude Include="util\matrixoperations\LUFactorization.hpp" />
+    <ClInclude Include="util\matrixoperations\MatrixFactorization.hpp" />
+    <ClInclude Include="util\matrixoperations\QRFactorization.hpp" />
+    <ClInclude Include="util\matrixoperations\SchurFactorization.hpp" />
+    <ClInclude Include="util\MemoryTracker.hpp" />
+    <ClInclude Include="util\MessageInterface.hpp" />
+    <ClInclude Include="util\MessageReceiver.hpp" />
+    <ClInclude Include="util\OrbitDesignerTime.hpp" />
+    <ClInclude Include="util\RandomNumber.hpp" />
+    <ClInclude Include="util\RealUtilities.hpp" />
+    <ClInclude Include="util\RepeatGroundTrack.hpp" />
+    <ClInclude Include="util\RepeatSunSync.hpp" />
+    <ClInclude Include="util\RgbColor.hpp" />
+    <ClInclude Include="util\Rmatrix.hpp" />
+    <ClInclude Include="util\Rmatrix33.hpp" />
+    <ClInclude Include="util\Rmatrix66.hpp" />
+    <ClInclude Include="util\Rvector.hpp" />
+    <ClInclude Include="util\Rvector3.hpp" />
+    <ClInclude Include="util\Rvector6.hpp" />
+    <ClInclude Include="util\SPADFileReader.hpp" />
+    <ClInclude Include="util\StateConversionUtil.hpp" />
+    <ClInclude Include="util\STKEphemerisFile.hpp" />
+    <ClInclude Include="util\StringTokenizer.hpp" />
+    <ClInclude Include="util\StringUtil.hpp" />
+    <ClInclude Include="util\SunSync.hpp" />
+    <ClInclude Include="util\TableTemplate.hpp" />
+    <ClInclude Include="util\TextParser.hpp" />
+    <ClInclude Include="util\TimeSystemConverter.hpp" />
+    <ClInclude Include="util\TimeTypes.hpp" />
+    <ClInclude Include="util\UtcDate.hpp" />
+    <ClInclude Include="util\UtilityException.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="util\A1Date.cpp" />
+    <ClCompile Include="util\A1Mjd.cpp" />
+    <ClCompile Include="util\AngleUtil.cpp" />
+    <ClCompile Include="util\ArrayTemplate.cpp" />
+    <ClCompile Include="util\AttitudeConversionUtility.cpp" />
+    <ClCompile Include="util\AttitudeUtil.cpp" />
+    <ClCompile Include="util\BaseException.cpp" />
+    <ClCompile Include="util\BodyFixedStateConverter.cpp" />
+    <ClCompile Include="util\CalculationUtilities.cpp" />
+    <ClCompile Include="util\CCSDSAEMEulerAngleSegment.cpp" />
+    <ClCompile Include="util\CCSDSAEMQuaternionSegment.cpp" />
+    <ClCompile Include="util\CCSDSAEMReader.cpp" />
+    <ClCompile Include="util\CCSDSAEMSegment.cpp" />
+    <ClCompile Include="util\CCSDSEMReader.cpp" />
+    <ClCompile Include="util\CCSDSEMSegment.cpp" />
+    <ClCompile Include="util\CCSDSEMWriter.cpp" />
+    <ClCompile Include="util\CCSDSOEMSegment.cpp" />
+    <ClCompile Include="util\CCSDSOEMWriter.cpp" />
+    <ClCompile Include="util\Code500EphemerisFile.cpp" />
+    <ClCompile Include="util\ColorDatabase.cpp" />
+    <ClCompile Include="util\datawriter\DataBucket.cpp" />
+    <ClCompile Include="util\datawriter\DataWriter.cpp" />
+    <ClCompile Include="util\datawriter\DataWriterInterface.cpp" />
+    <ClCompile Include="util\datawriter\DataWriterMaker.cpp" />
+    <ClCompile Include="util\datawriter\WriterData.cpp" />
+    <ClCompile Include="util\Date.cpp" />
+    <ClCompile Include="util\DateUtil.cpp" />
+    <ClCompile Include="util\ElapsedTime.cpp" />
+    <ClCompile Include="util\EopFile.cpp" />
+    <ClCompile Include="util\Ephemeris.cpp" />
+    <ClCompile Include="util\FileManager.cpp" />
+    <ClCompile Include="util\FileUtil.cpp" />
+    <ClCompile Include="util\Frozen.cpp" />
+    <ClCompile Include="util\GmatGlobal.cpp" />
+    <ClCompile Include="util\GmatTime.cpp" />
+    <ClCompile Include="util\GravityFileUtil.cpp" />
+    <ClCompile Include="util\GregorianDate.cpp" />
+    <ClCompile Include="util\IFileUpdater.cpp" />
+    <ClCompile Include="util\interpolator\BrentDekkerZero.cpp" />
+    <ClCompile Include="util\interpolator\CubicSplineInterpolator.cpp" />
+    <ClCompile Include="util\interpolator\HermiteInterpolator.cpp" />
+    <ClCompile Include="util\interpolator\Interpolator.cpp" />
+    <ClCompile Include="util\interpolator\InterpolatorException.cpp" />
+    <ClCompile Include="util\interpolator\LagrangeInterpolator.cpp" />
+    <ClCompile Include="util\interpolator\LinearInterpolator.cpp" />
+    <ClCompile Include="util\interpolator\NotAKnotInterpolator.cpp" />
+    <ClCompile Include="util\LeapSecsFileReader.cpp" />
+    <ClCompile Include="util\Linear.cpp" />
+    <ClCompile Include="util\matrixoperations\CholeskyFactorization.cpp" />
+    <ClCompile Include="util\matrixoperations\LUFactorization.cpp" />
+    <ClCompile Include="util\matrixoperations\MatrixFactorization.cpp" />
+    <ClCompile Include="util\matrixoperations\QRFactorization.cpp" />
+    <ClCompile Include="util\matrixoperations\SchurFactorization.cpp" />
+    <ClCompile Include="util\MemoryTracker.cpp" />
+    <ClCompile Include="util\MessageInterface.cpp" />
+    <ClCompile Include="util\MessageReceiver.cpp" />
+    <ClCompile Include="util\OrbitDesignerTime.cpp" />
+    <ClCompile Include="util\RandomNumber.cpp" />
+    <ClCompile Include="util\RealUtilities.cpp" />
+    <ClCompile Include="util\RepeatGroundTrack.cpp" />
+    <ClCompile Include="util\RepeatSunSync.cpp" />
+    <ClCompile Include="util\RgbColor.cpp" />
+    <ClCompile Include="util\Rmatrix.cpp" />
+    <ClCompile Include="util\Rmatrix33.cpp" />
+    <ClCompile Include="util\Rmatrix66.cpp" />
+    <ClCompile Include="util\Rvector.cpp" />
+    <ClCompile Include="util\Rvector3.cpp" />
+    <ClCompile Include="util\Rvector6.cpp" />
+    <ClCompile Include="util\SPADFileReader.cpp" />
+    <ClCompile Include="util\StateConversionUtil.cpp" />
+    <ClCompile Include="util\STKEphemerisFile.cpp" />
+    <ClCompile Include="util\StringTokenizer.cpp" />
+    <ClCompile Include="util\StringUtil.cpp" />
+    <ClCompile Include="util\SunSync.cpp" />
+    <ClCompile Include="util\TableTemplate.cpp" />
+    <ClCompile Include="util\TextParser.cpp" />
+    <ClCompile Include="util\TimeSystemConverter.cpp" />
+    <ClCompile Include="util\TimeTypes.cpp" />
+    <ClCompile Include="util\UtcDate.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

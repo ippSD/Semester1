@@ -1,3 +1,10 @@
+!---------------------------------------------------------------------------!
+!   object_oriented_lagrange_points                                         !
+!---------------------------------------------------------------------------!
+!   Propagates the Earth-Moon Lagrange Points using Object Oriented         !
+!   Programming on Fortran.                                                 !
+!---------------------------------------------------------------------------!
+
 program object_oriented_lagrange_points
     use cauchy
     use n_bodies!, only: f_n_bodies, cauchy_problem, runge_kutta

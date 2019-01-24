@@ -1,7 +1,8 @@
 !---------------------------------------------------------------------------!
 !   random_n_bodies                                                         !
 !---------------------------------------------------------------------------!
-!   Simulation of N-bodies problem on outter space.                         !
+!   Simulation of N-bodies problem on outter space with random              !
+!   initial conditions.                                                     !
 !---------------------------------------------------------------------------!
     
 program random_n_bodies

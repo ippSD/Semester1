@@ -1,6 +1,13 @@
 module dislin_mod
-    use dislin
+    use dislin, color_raw => color
     implicit none
+    
+    interface plot_title
+       module procedure plot_title_default, plot_title_position
+    end interface plot_title
+    
+    public
+    private :: plot_title_default, plot_title_position
     
     contains
     
@@ -36,13 +43,11 @@ module dislin_mod
         
         n_lines = size(legends)
         string_length = len(legends(1))
-        write(*,*) n_lines, string_length
         allocate(character(n_lines * string_length) :: buffer)
         
         call legini(buffer, n_lines, string_length)
         
         do i = 1, n_lines
-            write(*,*) buffer
             call leglin(buffer, legends(i), i)
         end do
         
@@ -58,7 +63,7 @@ module dislin_mod
     end subroutine
     
     !-----------------------------------------------------------------------!
-    !   ( SUBROUTINE ) plot_title                                           !
+    !   ( SUBROUTINE ) plot_title_default                                   !
     !-----------------------------------------------------------------------!
     !   Plots the title on the currently running dislin plot.               !
     !-----------------------------------------------------------------------!
@@ -67,22 +72,42 @@ module dislin_mod
     !   IN          ! (character) tit                                       !
     !               ! Title of the plot.                                    !
     !---------------!-------------------------------------------------------!
-    !   IN          ! (integer) plot_level                                  !
-    !   OPTIONAL    ! Row on which the title is plotted  starting from      !
-    !               ! the top: 1 -> top, 2 -> under the top, etc.           !
-    !---------------!-------------------------------------------------------!
-    subroutine plot_title(tit, plot_level)
+    subroutine plot_title_default(tit)
         character(len=*), intent(in) :: tit
-        integer, optional :: plot_level
         
         integer :: level, lvl = 1
         call getlev(level)
-        if(present(plot_level)) lvl = plot_level
         if(level > 0) call titlin(tit, lvl)
         
-        call color('FORE')
+        call color_raw('FORE')
         call title()
-    end subroutine plot_title
+    end subroutine plot_title_default
+    
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot_title_position                                  !
+    !-----------------------------------------------------------------------!
+    !   Plots the title on an specific line.                                !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) tit                                       !
+    !               ! Title of the plot.                                    !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (integer) plot_level                                  !
+    !               ! Row on which the title is plotted  starting from      !
+    !               ! the top: 1 -> top, 2 -> under the top, etc.           !
+    !---------------!-------------------------------------------------------!
+    subroutine plot_title_position(tit, plot_level)
+        character(len=*), intent(in) :: tit
+        integer :: plot_level
+        
+        integer :: level
+        call getlev(level)
+        if(level > 0) call titlin(tit, plot_level)
+        
+        call color_raw('FORE')
+        call title()
+    end subroutine plot_title_position
     
     !-----------------------------------------------------------------------!
     !   ( SUBROUTINE ) plot_subtitle                                        !
@@ -101,9 +126,9 @@ module dislin_mod
     end subroutine plot_subtitle 
     
     !-----------------------------------------------------------------------!
-    !   ( SUBROUTINE ) plot                                                 !
+    !   ( SUBROUTINE ) scatter                                              !
     !-----------------------------------------------------------------------!
-    !   Plots (x,y) curves with Matlab style.                               !
+    !   Plots (x,y) scatter points with Matlab style.                       !
     !-----------------------------------------------------------------------!
     !   Parameters: !                                                       !
     !---------------!-------------------------------------------------------!
@@ -113,7 +138,7 @@ module dislin_mod
     !   IN          ! (real(N)) y                                           !
     !               ! Y-axis plot data.                                     !
     !---------------!-------------------------------------------------------!
-    !   IN          ! (character) plotcolor                                 !
+    !   IN          ! (character) color                                     !
     !   OPTIONAL    ! Color of the curve. Available colors are:             !
     !               ! 'BLACK', 'RED', 'GREEN', 'BLUE', 'CYAN', 'YELLOW',    !
     !               ! 'ORANGE', 'MAGENTA', 'WHITE', 'FORE' (default),       !
@@ -129,7 +154,7 @@ module dislin_mod
     !   IN          ! (character) ylabel                                    !
     !   OPTIONAL    ! Title of the Y-label.                                 !
     !---------------!-------------------------------------------------------!
-    !   IN          ! (character) file_name                                 !
+    !   IN          ! (character) filename                                  !
     !   OPTIONAL    ! Filename in which the plot is saved.                  !
     !               ! File type goes according to filename extension.       !
     !---------------!-------------------------------------------------------!
@@ -137,10 +162,204 @@ module dislin_mod
     !   OPTIONAL    ! Does not close the plot on exit,                      !
     !               ! allowing multiple plots.                              !
     !---------------!-------------------------------------------------------!
-    subroutine plot(x, y, plotcolor, xlabel, ylabel, file_name, hold_on)
-        real :: x(:), y(:)
-        character(len=*), optional :: plotcolor, xlabel, ylabel, file_name
+    subroutine scatter(x, y, color, xlabel, ylabel, filename, hold_on)
+        real, intent(in) :: x(:), y(:)
+        character(len=*), optional :: color, xlabel, ylabel, filename
         logical, optional :: hold_on
+        
+        logical :: do_color  = .false., &
+                   do_xlabel = .false., &
+                   do_ylabel = .false., &
+                   do_save   = .false., &
+                   do_hold  = .false.
+        
+        character( len = 127 ) :: opt_color    = "FORE", &
+                                  opt_xlabel   = ""    , &
+                                  opt_ylabel   = ""    , &
+                                  opt_filename = ""
+        
+        if ( present( color ) ) then
+            do_color = .true.
+            opt_color = color
+        end if
+        
+        if ( present( xlabel ) ) then
+            do_xlabel = .true.
+            opt_xlabel = xlabel
+        end if
+        
+        if ( present( ylabel ) ) then
+            do_ylabel = .true.
+            opt_ylabel = ylabel
+        end if
+        
+        if ( present( filename ) ) then
+            do_save = .true.
+            opt_filename = filename
+        end if
+        
+        if ( present( hold_on ) ) do_hold = hold_on
+        
+        call plot_hub( &
+            x = x, &
+            y = y, &
+            color = opt_color, &
+            plot_type = 1, &
+            hold_on = do_hold, &
+            do_xlabel = do_xlabel, &
+            do_ylabel = do_ylabel, &
+            do_save = do_save, &
+            xlabel = opt_xlabel, &
+            ylabel = opt_ylabel, &
+            filename = opt_filename &
+        )
+    
+    end subroutine scatter
+    
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot                                                 !
+    !-----------------------------------------------------------------------!
+    !   Plots (x,y) curves with Matlab style.                               !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) x                                           !
+    !               ! X-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) y                                           !
+    !               ! Y-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) color                                     !
+    !   OPTIONAL    ! Color of the curve. Available colors are:             !
+    !               ! 'BLACK', 'RED', 'GREEN', 'BLUE', 'CYAN', 'YELLOW',    !
+    !               ! 'ORANGE', 'MAGENTA', 'WHITE', 'FORE' (default),       !
+    !               ! 'BACK' (background), 'GRAY' and                       !
+    !               ! 'HALF' (half intensity of foreground)                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) xlabel                                    !
+    !   OPTIONAL    ! Title of the X-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !   OPTIONAL    ! Title of the Y-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !   OPTIONAL    ! Title of the Y-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) filename                                  !
+    !   OPTIONAL    ! Filename in which the plot is saved.                  !
+    !               ! File type goes according to filename extension.       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) hold_on                                     !
+    !   OPTIONAL    ! Does not close the plot on exit,                      !
+    !               ! allowing multiple plots.                              !
+    !---------------!-------------------------------------------------------!
+    subroutine plot(x, y, color, xlabel, ylabel, filename, hold_on)
+        real, intent(in) :: x(:), y(:)
+        character(len=*), optional :: color, xlabel, ylabel, filename
+        logical, optional :: hold_on
+        
+        logical :: do_color  = .false., &
+                   do_xlabel = .false., &
+                   do_ylabel = .false., &
+                   do_save   = .false., &
+                   do_hold  = .false.
+        
+        character( len = 127 ) :: opt_color    = "FORE", &
+                                  opt_xlabel   = ""    , &
+                                  opt_ylabel   = ""    , &
+                                  opt_filename = ""
+        
+        if ( present( color ) ) then
+            do_color = .true.
+            opt_color = color
+        end if
+        
+        if ( present( xlabel ) ) then
+            do_xlabel = .true.
+            opt_xlabel = xlabel
+        end if
+        
+        if ( present( ylabel ) ) then
+            do_ylabel = .true.
+            opt_ylabel = ylabel
+        end if
+        
+        if ( present( filename ) ) then
+            do_save = .true.
+            opt_filename = filename
+        end if
+        
+        if ( present( hold_on ) ) do_hold = hold_on
+        
+        call plot_hub( &
+            x = x, &
+            y = y, &
+            color = opt_color, &
+            plot_type = 0, &
+            hold_on = do_hold, &
+            do_xlabel = do_xlabel, &
+            do_ylabel = do_ylabel, &
+            do_save = do_save, &
+            xlabel = opt_xlabel, &
+            ylabel = opt_ylabel, &
+            filename = opt_filename &
+        )
+    
+    end subroutine plot
+    
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) plot_hub                                             !
+    !-----------------------------------------------------------------------!
+    !   Plots (x,y) curves, scatters, ... with Matlab style.                !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) x                                           !
+    !               ! X-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) y                                           !
+    !               ! Y-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) color                                     !
+    !               ! Colour of the curve. Available colors are:            !
+    !               ! 'BLACK', 'RED', 'GREEN', 'BLUE', 'CYAN', 'YELLOW',    !
+    !               ! 'ORANGE', 'MAGENTA', 'WHITE', 'FORE' (default),       !
+    !               ! 'BACK' (background), 'GRAY' and                       !
+    !               ! 'HALF' (half intensity of foreground)                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (integer) plot_type                                   !
+    !               ! Integer of what to plot:                              !
+    !               ! 0 => plot, 1 => scatter                               !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) hold_on                                     !
+    !               ! If true, the current plot is not closed on exit,      !
+    !               ! allowing multiple plots.                              !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) do_xlabel                                   !
+    !               ! If true, X-Axis label is set to xlabel.               !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) do_ylabel                                   !
+    !               ! If true, Y-Axis label is set to ylabel.               !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) do_save                                     !
+    !               ! If true, plot outputs to filename.                    !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) xlabel                                    !
+    !               ! Title of the X-label if do_xlabel is true.            !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !               ! Title of the Y-label if do_ylabel is true.            !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) filename                                  !
+    !               ! Filename in which the plot is saved if do_save is     !
+    !               ! true. File type goes according to filename extension. !
+    !---------------!-------------------------------------------------------!
+    subroutine plot_hub(x, y, color, plot_type, hold_on, do_xlabel, do_ylabel, do_save, xlabel, ylabel, filename)
+        real, intent(in) :: x(:), y(:)
+        integer, intent(in) :: plot_type
+        logical, intent(in) :: hold_on, do_xlabel, do_ylabel, do_save
+        character(len=*), intent(in) :: color, xlabel, ylabel, filename
+        
         
         integer :: i, ic, level, filename_len
         character(len=3) :: extension
@@ -156,10 +375,10 @@ module dislin_mod
         ystep = (ymax - ymin) / 10e0
         
         if(level == 0) then
-            if(present(file_name)) then
-                filename_len = len(trim(file_name))
+            if( do_save ) then
+                filename_len = len(trim(filename))
                 allocate(character(len=filename_len) :: trimmed_filename)
-                trimmed_filename = trim(file_name)
+                trimmed_filename = trim(filename)
                 extension = trimmed_filename(filename_len - 2:filename_len)
                 do i=1,3
                     ic = ichar(extension(i:i))
@@ -170,7 +389,7 @@ module dislin_mod
                 else
                     call metafl(extension)
                 end if
-                call setfil(file_name)
+                call setfil(trim(filename))
             else
                 call metafl('CONS')
             endif
@@ -183,29 +402,31 @@ module dislin_mod
             call axspos(450,1800)
             call axslen(2200,1200)
             
-            if(present(xlabel)) call name(xlabel, 'X')
-            if(present(ylabel)) call name(ylabel, 'Y')
-            
             !ic=intrgb(0.95,0.95,0.95)
             !call axsbgd(ic)
+            !call ticks(5,'XY')
+            if( do_xlabel ) call name(xlabel, 'X')
+            if( do_ylabel ) call name(ylabel, 'Y')
             
             call graf(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep)
+            !if ( plot_type == 1 ) call graf3(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep, 0e0, 1e-3, 0e0, 1e-3)
             call setrgb(0.7,0.7,0.7)
             call grid(1,1)
                         
             !call labdig(-1,'X')
-            !call tics(10,'XY')
+            
         
         end if
-        
-        if(present(plotcolor)) call color(plotcolor)
-        call curve(x,y,size(x))
-        
-        if(present(hold_on)) then
-            if(.not. hold_on) call disfin()
-        else
-            call disfin()
+        call color_raw(color)
+        if ( plot_type == 0 ) call curve( x, y, size(x) )
+        if ( plot_type == 1 ) then
+            plot_each_point: do i = 1, size(x)
+                call rlsymb( 3, x(i), y(i) )
+            end do plot_each_point
         end if
+        
+        if( .not. hold_on ) call disfin()
     
-    end subroutine plot
+    end subroutine plot_hub
+    
 end module dislin_mod

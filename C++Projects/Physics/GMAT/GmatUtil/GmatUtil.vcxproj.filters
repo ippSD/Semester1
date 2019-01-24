@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de origen\interpolator">
+      <UniqueIdentifier>{397dc34e-e249-460c-8afd-dac3ce53cdfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Interpolator">
+      <UniqueIdentifier>{32986e30-7528-45fc-9e13-4a2805bccf39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\matrixoperations">
+      <UniqueIdentifier>{4f7b5ee5-0c91-48c4-a595-c1a1f68e005f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\matrixoperations">
+      <UniqueIdentifier>{97e2efd8-3f7f-4ded-8dc2-ae173fed5e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\datawriter">
+      <UniqueIdentifier>{ca23f310-e3f3-42ac-83a3-6d0cd74353ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\datawriter">
+      <UniqueIdentifier>{6235493d-47da-4ada-9bed-a0b595851c4c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\A1Date.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\A1Mjd.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\AngleUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\ArrayTemplate.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\AttitudeConversionUtility.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\AttitudeUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\BaseException.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\BodyFixedStateConverter.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CalculationUtilities.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSAEMEulerAngleSegment.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSAEMQuaternionSegment.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSAEMReader.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSAEMSegment.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSEMReader.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSEMSegment.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSEMWriter.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSOEMSegment.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\CCSDSOEMWriter.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Code500EphemerisFile.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\ColorDatabase.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\ColorTypes.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Date.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\DateUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\ElapsedTime.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\EopFile.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Ephemeris.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\FileManager.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\FileTypes.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\FileUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Frozen.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\GmatConstants.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\GmatDefaults.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\GmatGlobal.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\GmatTime.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\GravityFileUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\GregorianDate.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\IFileUpdater.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\LeapSecsFileReader.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Linear.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\MemoryTracker.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\MessageInterface.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\MessageReceiver.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\OrbitDesignerTime.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\RandomNumber.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\RealUtilities.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\RepeatGroundTrack.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\RepeatSunSync.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\RgbColor.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Rmatrix.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Rmatrix33.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Rmatrix66.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Rvector.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Rvector3.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Rvector6.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\SPADFileReader.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\StateConversionUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\STKEphemerisFile.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\StringTokenizer.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\StringUtil.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\SunSync.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\TableTemplate.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\TextParser.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\TimeSystemConverter.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\TimeTypes.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\UtcDate.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\UtilityException.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\BrentDekkerZero.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\CubicSplineInterpolator.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\HermiteInterpolator.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\Interpolator.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\InterpolatorException.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\LagrangeInterpolator.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\LinearInterpolator.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\interpolator\NotAKnotInterpolator.hpp">
+      <Filter>Archivos de encabezado\Interpolator</Filter>
+    </ClInclude>
+    <ClInclude Include="util\datawriter\DataBucket.hpp">
+      <Filter>Archivos de encabezado\datawriter</Filter>
+    </ClInclude>
+    <ClInclude Include="util\datawriter\DataWriter.hpp">
+      <Filter>Archivos de encabezado\datawriter</Filter>
+    </ClInclude>
+    <ClInclude Include="util\datawriter\DataWriterInterface.hpp">
+      <Filter>Archivos de encabezado\datawriter</Filter>
+    </ClInclude>
+    <ClInclude Include="util\datawriter\DataWriterMaker.hpp">
+      <Filter>Archivos de encabezado\datawriter</Filter>
+    </ClInclude>
+    <ClInclude Include="util\datawriter\WriterData.hpp">
+      <Filter>Archivos de encabezado\datawriter</Filter>
+    </ClInclude>
+    <ClInclude Include="util\matrixoperations\CholeskyFactorization.hpp">
+      <Filter>Archivos de encabezado\matrixoperations</Filter>
+    </ClInclude>
+    <ClInclude Include="util\matrixoperations\LUFactorization.hpp">
+      <Filter>Archivos de encabezado\matrixoperations</Filter>
+    </ClInclude>
+    <ClInclude Include="util\matrixoperations\MatrixFactorization.hpp">
+      <Filter>Archivos de encabezado\matrixoperations</Filter>
+    </ClInclude>
+    <ClInclude Include="util\matrixoperations\QRFactorization.hpp">
+      <Filter>Archivos de encabezado\matrixoperations</Filter>
+    </ClInclude>
+    <ClInclude Include="util\matrixoperations\SchurFactorization.hpp">
+      <Filter>Archivos de encabezado\matrixoperations</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\A1Date.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\A1Mjd.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\AngleUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\ArrayTemplate.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\AttitudeConversionUtility.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\AttitudeUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\BaseException.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\BodyFixedStateConverter.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CalculationUtilities.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSAEMEulerAngleSegment.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSAEMQuaternionSegment.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSAEMReader.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSAEMSegment.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSEMReader.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSEMSegment.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSEMWriter.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSOEMSegment.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\CCSDSOEMWriter.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Code500EphemerisFile.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\ColorDatabase.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Date.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\DateUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\ElapsedTime.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\EopFile.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Ephemeris.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\FileManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\FileUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Frozen.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\GmatGlobal.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\GmatTime.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\GravityFileUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\GregorianDate.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\IFileUpdater.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\LeapSecsFileReader.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Linear.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\MemoryTracker.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\MessageInterface.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\MessageReceiver.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\OrbitDesignerTime.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\RandomNumber.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\RealUtilities.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\RepeatGroundTrack.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\RepeatSunSync.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\RgbColor.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Rmatrix.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Rmatrix33.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Rmatrix66.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Rvector.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Rvector3.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\Rvector6.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\SPADFileReader.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\StateConversionUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\STKEphemerisFile.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\StringTokenizer.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\StringUtil.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\SunSync.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\TableTemplate.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\TextParser.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\TimeSystemConverter.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\TimeTypes.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\UtcDate.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\BrentDekkerZero.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\CubicSplineInterpolator.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\HermiteInterpolator.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\Interpolator.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\InterpolatorException.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\LagrangeInterpolator.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\LinearInterpolator.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\interpolator\NotAKnotInterpolator.cpp">
+      <Filter>Archivos de origen\interpolator</Filter>
+    </ClCompile>
+    <ClCompile Include="util\matrixoperations\CholeskyFactorization.cpp">
+      <Filter>Archivos de origen\matrixoperations</Filter>
+    </ClCompile>
+    <ClCompile Include="util\matrixoperations\LUFactorization.cpp">
+      <Filter>Archivos de origen\matrixoperations</Filter>
+    </ClCompile>
+    <ClCompile Include="util\matrixoperations\MatrixFactorization.cpp">
+      <Filter>Archivos de origen\matrixoperations</Filter>
+    </ClCompile>
+    <ClCompile Include="util\matrixoperations\QRFactorization.cpp">
+      <Filter>Archivos de origen\matrixoperations</Filter>
+    </ClCompile>
+    <ClCompile Include="util\matrixoperations\SchurFactorization.cpp">
+      <Filter>Archivos de origen\matrixoperations</Filter>
+    </ClCompile>
+    <ClCompile Include="util\datawriter\DataBucket.cpp">
+      <Filter>Archivos de origen\datawriter</Filter>
+    </ClCompile>
+    <ClCompile Include="util\datawriter\DataWriter.cpp">
+      <Filter>Archivos de origen\datawriter</Filter>
+    </ClCompile>
+    <ClCompile Include="util\datawriter\DataWriterInterface.cpp">
+      <Filter>Archivos de origen\datawriter</Filter>
+    </ClCompile>
+    <ClCompile Include="util\datawriter\DataWriterMaker.cpp">
+      <Filter>Archivos de origen\datawriter</Filter>
+    </ClCompile>
+    <ClCompile Include="util\datawriter\WriterData.cpp">
+      <Filter>Archivos de origen\datawriter</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

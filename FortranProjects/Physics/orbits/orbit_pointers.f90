@@ -43,6 +43,19 @@ module orbit_pointers
         y_pointer(0:) => state_matrix(0:,y_idx)
     end subroutine
     
+    subroutine pointer_to_body_r_vs_time(state_matrix, l, r_pointer)
+        real, target, intent(in) :: state_matrix(0:,:)
+        integer, intent(in) :: l
+        real, pointer, intent(out) :: r_pointer(:,:)
+        
+        integer :: n, lower_idx, upper_idx
+        
+        n = size(state_matrix(0,:)) / 7
+        lower_idx = n+3*(l-1)+1
+        upper_idx = n+3*(l-1)+3
+        r_pointer(0:,1:) => state_matrix(0:,lower_idx:upper_idx)
+    end subroutine
+    
     subroutine pointer_to_body_velocity(state_vector, l, v_pointer)
         real, target, intent(in) :: state_vector(:)
         integer, intent(in) :: l

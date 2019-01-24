@@ -1,3 +1,9 @@
+!---------------------------------------------------------------------------!
+!   oscilator_integration                                                   !
+!---------------------------------------------------------------------------!
+!   Integrates the harmonic oscilator with different temporal schemes.      !
+!---------------------------------------------------------------------------!
+    
 program oscilator_integrator
     use cauchy
     use ode_interfaces, only: propagator => temporal_scheme
@@ -68,7 +74,7 @@ program oscilator_integrator
                 xlabel = xlabels(j)      , &
                 ylabel = ylabels(j)      , &
                 hold_on = .true.         , &
-                file_name = plotfiles(j)   &
+                filename = plotfiles(j)    &
             )
         end do
         
