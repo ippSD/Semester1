@@ -4,8 +4,8 @@
 		<Platform Name="Win32"/>
 		<Platform Name="x64"/></Platforms>
 	<Configurations>
-		<Configuration Name="Debug|Win32" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" RealKIND="realKIND8" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+		<Configuration Name="Debug|Win32" TargetName="$(ProjectName)_d" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
 				<Tool Name="VFLibrarianTool" LinkLibraryDependencies="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
@@ -14,16 +14,16 @@
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Release|Win32" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" RealKIND="realKIND8" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLibrarianTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLibrarianTool" LinkLibraryDependencies="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
-		<Configuration Name="Debug|x64" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+		<Configuration Name="Debug|x64" OutputDirectory="$(ConfigurationName)" TargetName="$(ProjectName)_d" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" RealKIND="realKIND8" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
 				<Tool Name="VFLibrarianTool" LinkLibraryDependencies="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
@@ -31,9 +31,9 @@
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
-		<Configuration Name="Release|x64" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLibrarianTool"/>
+		<Configuration Name="Release|x64" OutputDirectory="$(ConfigurationName)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" RealKIND="realKIND8" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLibrarianTool" LinkLibraryDependencies="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -45,12 +45,12 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\cauchy.f90"/>
-		<File RelativePath=".\ode_interfaces.f90"/>
 		<File RelativePath=".\numerical_methods.f90">
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration>
 			<FileConfiguration Name="Debug|x64">
 				<Tool Name="VFFortranCompilerTool" AdditionalIncludeDirectories="."/></FileConfiguration></File>
+		<File RelativePath=".\ode_interfaces.f90"/>
 		<File RelativePath=".\richardson_extrapolation.f90"/>
 		<File RelativePath=".\rkf45.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

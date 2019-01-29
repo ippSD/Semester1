@@ -24,7 +24,7 @@
     <ClInclude Include="rkf45.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="numerical_methods.h">
+    <ClInclude Include="numerical_methods.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

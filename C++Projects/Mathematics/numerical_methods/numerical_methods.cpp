@@ -1,11 +1,12 @@
 #include "stdafx.h"
-#include "numerical_methods.h"
-#include "rkf45.hpp"
+#include "numerical_methods.hpp"
+#include "stdafx.h"
+#include "rkf45.cpp"
 
 
 template <class T>
 void runge_kutta(void (f)(T, T*, T*), T t1, T t2, T* u1, T* u2) {
-	int const m = *(&u1 + 1) - u1;
+	int const m = (int) (*(&u1 + 1) - u1);
 	T t = t1;
 	T* du_dt = new T[m];
 	T rel_err = 1e-5;
@@ -16,7 +17,7 @@ void runge_kutta(void (f)(T, T*, T*), T t1, T t2, T* u1, T* u2) {
 
 template <>
 void runge_kutta<float>(void (f)(float, float*, float*), float t1, float t2, float* u1, float* u2) {
-	int const m = *(&u1 + 1) - u1;
+	int const m = (int) (*(&u1 + 1) - u1);
 	float t = t1;
 	float* du_dt = new float[m];
 	float rel_err = (float) 1e-5;
@@ -27,7 +28,7 @@ void runge_kutta<float>(void (f)(float, float*, float*), float t1, float t2, flo
 
 template <class T>
 void euler_explicit(void (f)(T, T*, T*), T t1, T t2, T* u1, T* u2) {
-	int m = *(&u1 + 1) - u1;
+	int m = (int) (*(&u1 + 1) - u1);
 	f(t1, u1, u2);
 	for (int i = 0; i < m; i++) u2[i] = u1[i] + (t2 - t1) * u2[i];
 }

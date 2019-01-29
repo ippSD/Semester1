@@ -5,14 +5,55 @@
 # include <iomanip>
 # include <cmath>
 # include <ctime>
+//#include "rkf45.hpp"
 
 using namespace std;
 
-# include "rkf45.hpp"
+
 
 //****************************************************************************80
 
-float r4_abs(float x)
+template<typename T>
+T r4_sign(T x)
+
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    R4_SIGN returns the sign of an R4.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    27 March 2004
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, float X, the number whose sign is desired.
+//
+//    Output, float R4_SIGN, the sign of X.
+//
+{
+	if (x < 0.0)
+	{
+		return (-1.0);
+	}
+	else
+	{
+		return (+1.0);
+	}
+}
+//****************************************************************************80
+
+template<typename T>
+T r4_abs(T x)
 
 	//****************************************************************************80
 	//
@@ -50,7 +91,8 @@ float r4_abs(float x)
 }
 //****************************************************************************80
 
-float r4_epsilon()
+template<typename T>
+T r4_epsilon()
 
 	//****************************************************************************80
 	//
@@ -83,15 +125,16 @@ float r4_epsilon()
 	//    Output, double R4_EPSILON, the R4 round-off unit.
 	//
 {
-	const float value = 1.19209290E-07;
+	const T value = (T) 1.19209290E-07;
 
 	return value;
 }
 //****************************************************************************80
 
-void r4_fehl(void f(float t, float y[], float yp[]), int neqn,
-	float y[], float t, float h, float yp[], float f1[], float f2[], float f3[],
-	float f4[], float f5[], float s[])
+template<typename T>
+void r4_fehl(void f(T t, T y[], T yp[]), int neqn,
+	T y[], T t, T h, T yp[], T f1[], T f2[], T f3[],
+	T f4[], T f5[], T s[])
 
 	//****************************************************************************80
 	//
@@ -166,10 +209,10 @@ void r4_fehl(void f(float t, float y[], float yp[]), int neqn,
 	//    Output, float S[NEQN], the estimate of the solution at T+H.
 	//
 {
-	float ch;
+	T ch;
 	int i;
 
-	ch = h / 4.0;
+	ch = h / (T) 4.0;
 
 	for (i = 0; i < neqn; i++)
 	{
@@ -178,74 +221,75 @@ void r4_fehl(void f(float t, float y[], float yp[]), int neqn,
 
 	f(t + ch, f5, f1);
 
-	ch = 3.0 * h / 32.0;
+	ch = (T) 3.0 * h / (T) 32.0;
 
 	for (i = 0; i < neqn; i++)
 	{
-		f5[i] = y[i] + ch * (yp[i] + 3.0 * f1[i]);
+		f5[i] = (T) (y[i] + ch * (yp[i] + 3.0 * f1[i]));
 	}
 
-	f(t + 3.0 * h / 8.0, f5, f2);
+	f((T) (t + 3.0 * h / 8.0), f5, f2);
 
-	ch = h / 2197.0;
+	ch = h / (T) 2197.0;
 
 	for (i = 0; i < neqn; i++)
 	{
-		f5[i] = y[i] + ch *
+		f5[i] = (T) (y[i] + ch *
 			(1932.0 * yp[i]
 				+ (7296.0 * f2[i] - 7200.0 * f1[i])
-				);
+				));
 	}
 
-	f(t + 12.0 * h / 13.0, f5, f3);
+	f(t + (T) (12.0 * h / 13.0), f5, f3);
 
-	ch = h / 4104.0;
+	ch = h / (T) 4104.0;
 
 	for (i = 0; i < neqn; i++)
 	{
 		f5[i] = y[i] + ch *
-			(
+			((T) (
 			(8341.0 * yp[i] - 845.0 * f3[i])
 				+ (29440.0 * f2[i] - 32832.0 * f1[i])
-				);
+				));
 	}
 
 	f(t + h, f5, f4);
 
-	ch = h / 20520.0;
+	ch = h / (T) 20520.0;
 
 	for (i = 0; i < neqn; i++)
 	{
 		f1[i] = y[i] + ch *
-			(
+			((T) (
 			(-6080.0 * yp[i]
 				+ (9295.0 * f3[i] - 5643.0 * f4[i])
 				)
 				+ (41040.0 * f1[i] - 28352.0 * f2[i])
-				);
+				));
 	}
 
-	f(t + h / 2.0, f1, f5);
+	f(t + h / (T) 2.0, f1, f5);
 	//
 	//  Ready to compute the approximate solution at T+H.
 	//
-	ch = h / 7618050.0;
+	ch = h / (T) 7618050.0;
 
 	for (i = 0; i < neqn; i++)
 	{
 		s[i] = y[i] + ch *
-			(
+			((T) (
 			(902880.0 * yp[i]
 				+ (3855735.0 * f3[i] - 1371249.0 * f4[i]))
 				+ (3953664.0 * f2[i] + 277020.0 * f5[i])
-				);
+				));
 	}
 
 	return;
 }
 //****************************************************************************80
 
-float r4_max(float x, float y)
+template<typename T>
+T r4_max(T x, T y)
 
 	//****************************************************************************80
 	//
@@ -283,7 +327,8 @@ float r4_max(float x, float y)
 }
 //****************************************************************************80
 
-float r4_min(float x, float y)
+template<typename T>
+T r4_min(T x, T y)
 
 	//****************************************************************************80
 	//
@@ -321,10 +366,10 @@ float r4_min(float x, float y)
 }
 //****************************************************************************80
 
-int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
-	float y[], float yp[], float *t, float tout, float *relerr, float abserr,
-	int flag)
-
+template<typename T>
+int r4_rkf45(void f(T t, T y[], T yp[]), int neqn,
+T y[], T yp[], T *t, T tout, T *relerr, T abserr,
+int flag)
 	//****************************************************************************80
 	//
 	//  Purpose:
@@ -490,24 +535,24 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 {
 # define MAXNFE 3000
 
-	static float abserr_save = -1.0;
-	float ae;
-	float dt;
-	float ee;
-	float eeoet;
-	float eps;
-	float esttol;
-	float et;
-	float *f1;
-	float *f2;
-	float *f3;
-	float *f4;
-	float *f5;
+	static T abserr_save = -1.0;
+	T ae;
+	T dt;
+	T ee;
+	T eeoet;
+	T eps;
+	T esttol;
+	T et;
+	T *f1;
+	T *f2;
+	T *f3;
+	T *f4;
+	T *f5;
 	int flag_return;
 	static int flag_save = -1000;
-	static float h = -1.0;
+	static T h = -1.0;
 	bool hfaild;
-	float hmin;
+	T hmin;
 	int i;
 	static int init = -1000;
 	int k;
@@ -516,20 +561,20 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 	int mflag;
 	static int nfe = -1;
 	bool output;
-	float relerr_min;
-	static float relerr_save = -1.0;
-	static float remin = 1.0E-12;
-	float s;
-	float scale;
-	float tol;
-	float toln;
-	float ypk;
+	T relerr_min;
+	static T relerr_save = -1.0;
+	static T remin = (T) 1.0E-12;
+	T s;
+	T scale;
+	T tol;
+	T toln;
+	T ypk;
 
 	flag_return = flag;
 	//
 	//  Check the input parameters.
 	//
-	eps = r4_epsilon();
+	eps = r4_epsilon<T>();
 
 	if (neqn < 1)
 	{
@@ -665,7 +710,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 	//  to avoid limiting precision difficulties arising from impossible 
 	//  accuracy requests.
 	//
-	relerr_min = 2.0 * r4_epsilon() + remin;
+	relerr_min = (T) 2.0 * r4_epsilon<T>() + remin;
 	//
 	//  Is the relative error tolerance too small?
 	//
@@ -687,11 +732,11 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 	//  set the counter for function evaluations, NFE;
 	//  estimate the starting stepsize.
 	//
-	f1 = new float[neqn];
-	f2 = new float[neqn];
-	f3 = new float[neqn];
-	f4 = new float[neqn];
-	f5 = new float[neqn];
+	f1 = new T[neqn];
+	f2 = new T[neqn];
+	f3 = new T[neqn];
+	f4 = new T[neqn];
+	f5 = new T[neqn];
 
 	if (mflag == 1)
 	{
@@ -723,7 +768,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 				ypk = r4_abs(yp[k]);
 				if (tol < ypk * pow(h, 5))
 				{
-					h = (float)pow((double)(tol / ypk), 0.2);
+					h = (T)pow((T)(tol / ypk), 0.2);
 				}
 			}
 		}
@@ -733,7 +778,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 			h = 0.0;
 		}
 
-		h = r4_max(h, 26.0 * eps * r4_max(r4_abs(*t), r4_abs(dt)));
+		h = r4_max((T) h, (T) 26.0 * eps * r4_max(r4_abs(*t), r4_abs(dt)));
 
 		if (flag_return < 0)
 		{
@@ -798,7 +843,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 	//  To avoid premature underflow in the error tolerance function,
 	//  scale the error tolerances.
 	//
-	scale = 2.0 / (*relerr);
+	scale = (T) 2.0 / (*relerr);
 	ae = scale * abserr;
 	//
 	//  Step by step integration.
@@ -809,7 +854,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 		//
 		//  Set the smallest allowable stepsize.
 		//
-		hmin = 26.0 * eps * r4_abs(*t);
+		hmin = (T) 26.0 * eps * r4_abs(*t);
 		//
 		//  Adjust the stepsize if necessary to hit the output point.
 		//
@@ -833,7 +878,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 			}
 			else
 			{
-				h = 0.5 * dt;
+				h = (T) 0.5 * dt;
 			}
 
 		}
@@ -910,17 +955,17 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 				}
 
 				ee = r4_abs
-				((-2090.0 * yp[k]
+				((T) ((-2090.0 * yp[k]
 					+ (21970.0 * f3[k] - 15048.0 * f4[k])
 					)
-					+ (22528.0 * f2[k] - 27360.0 * f5[k])
+					+ (22528.0 * f2[k] - 27360.0 * f5[k]))
 				);
 
 				eeoet = r4_max(eeoet, ee / et);
 
 			}
 
-			esttol = r4_abs(h) * eeoet * scale / 752400.0;
+			esttol = (T) r4_abs(h) * eeoet * scale / (T) 752400.0;
 
 			if (esttol <= 1.0)
 			{
@@ -935,11 +980,11 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 
 			if (esttol < 59049.0)
 			{
-				s = 0.9 / (float)pow((double)esttol, 0.2);
+				s =(T) 0.9 / (T) pow((T) esttol, (T) 0.2);
 			}
 			else
 			{
-				s = 0.1;
+				s = (T) 0.1;
 			}
 
 			h = s * h;
@@ -974,7 +1019,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 		//
 		if (0.0001889568 < esttol)
 		{
-			s = 0.9 / (float)pow((double)esttol, 0.2);
+			s = (T) (0.9 / pow((double)esttol, 0.2));
 		}
 		else
 		{
@@ -983,7 +1028,7 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 
 		if (hfaild)
 		{
-			s = r4_min(s, 1.0);
+			s = r4_min((T) s, (T) 1.0);
 		}
 
 		h = r4_sign(h) * r4_max(s * r4_abs(h), hmin);
@@ -1020,43 +1065,6 @@ int r4_rkf45(void f(float t, float y[], float yp[]), int neqn,
 }
 //****************************************************************************80
 
-float r4_sign(float x)
-
-	//****************************************************************************80
-	//
-	//  Purpose:
-	//
-	//    R4_SIGN returns the sign of an R4.
-	//
-	//  Licensing:
-	//
-	//    This code is distributed under the GNU LGPL license. 
-	//
-	//  Modified:
-	//
-	//    27 March 2004
-	//
-	//  Author:
-	//
-	//    John Burkardt
-	//
-	//  Parameters:
-	//
-	//    Input, float X, the number whose sign is desired.
-	//
-	//    Output, float R4_SIGN, the sign of X.
-	//
-{
-	if (x < 0.0)
-	{
-		return (-1.0);
-	}
-	else
-	{
-		return (+1.0);
-	}
-}
-//****************************************************************************80
 
 double r8_abs(double x)
 
@@ -1291,6 +1299,45 @@ void r8_fehl(void f(double t, double y[], double yp[]), int neqn,
 }
 //****************************************************************************80
 
+
+double r8_sign(double x)
+
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    R8_SIGN returns the sign of an R8.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    27 March 2004
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, double X, the number whose sign is desired.
+//
+//    Output, double R8_SIGN, the sign of X.
+//
+{
+	if (x < 0.0)
+	{
+		return (-1.0);
+	}
+	else
+	{
+		return (+1.0);
+	}
+}
+//****************************************************************************80
+
 double r8_max(double x, double y)
 
 	//****************************************************************************80
@@ -1371,168 +1418,168 @@ int r8_rkf45(void f(double t, double y[], double yp[]), int neqn,
 	double y[], double yp[], double *t, double tout, double *relerr,
 	double abserr, int flag)
 
-	//****************************************************************************80
-	//
-	//  Purpose:
-	//
-	//    R8_RKF45 carries out the Runge-Kutta-Fehlberg method.
-	//
-	//  Discussion:
-	//
-	//    This version of the routine uses DOUBLE real arithmetic.
-	//
-	//    This routine is primarily designed to solve non-stiff and mildly stiff
-	//    differential equations when derivative evaluations are inexpensive.
-	//    It should generally not be used when the user is demanding
-	//    high accuracy.
-	//
-	//    This routine integrates a system of NEQN first-order ordinary differential
-	//    equations of the form:
-	//
-	//      dY(i)/dT = F(T,Y(1),Y(2),...,Y(NEQN))
-	//
-	//    where the Y(1:NEQN) are given at T.
-	//
-	//    Typically the subroutine is used to integrate from T to TOUT but it
-	//    can be used as a one-step integrator to advance the solution a
-	//    single step in the direction of TOUT.  On return, the parameters in
-	//    the call list are set for continuing the integration.  The user has
-	//    only to call again (and perhaps define a new value for TOUT).
-	//
-	//    Before the first call, the user must 
-	//
-	//    * supply the subroutine F(T,Y,YP) to evaluate the right hand side;
-	//      and declare F in an EXTERNAL statement;
-	//
-	//    * initialize the parameters:
-	//      NEQN, Y(1:NEQN), T, TOUT, RELERR, ABSERR, FLAG.
-	//      In particular, T should initially be the starting point for integration,
-	//      Y should be the value of the initial conditions, and FLAG should 
-	//      normally be +1.
-	//
-	//    Normally, the user only sets the value of FLAG before the first call, and
-	//    thereafter, the program manages the value.  On the first call, FLAG should
-	//    normally be +1 (or -1 for single step mode.)  On normal return, FLAG will
-	//    have been reset by the program to the value of 2 (or -2 in single 
-	//    step mode), and the user can continue to call the routine with that 
-	//    value of FLAG.
-	//
-	//    (When the input magnitude of FLAG is 1, this indicates to the program 
-	//    that it is necessary to do some initialization work.  An input magnitude
-	//    of 2 lets the program know that that initialization can be skipped, 
-	//    and that useful information was computed earlier.)
-	//
-	//    The routine returns with all the information needed to continue
-	//    the integration.  If the integration reached TOUT, the user need only
-	//    define a new TOUT and call again.  In the one-step integrator
-	//    mode, returning with FLAG = -2, the user must keep in mind that 
-	//    each step taken is in the direction of the current TOUT.  Upon 
-	//    reaching TOUT, indicated by the output value of FLAG switching to 2,
-	//    the user must define a new TOUT and reset FLAG to -2 to continue 
-	//    in the one-step integrator mode.
-	//
-	//    In some cases, an error or difficulty occurs during a call.  In that case,
-	//    the output value of FLAG is used to indicate that there is a problem
-	//    that the user must address.  These values include:
-	//
-	//    * 3, integration was not completed because the input value of RELERR, the 
-	//      relative error tolerance, was too small.  RELERR has been increased 
-	//      appropriately for continuing.  If the user accepts the output value of
-	//      RELERR, then simply reset FLAG to 2 and continue.
-	//
-	//    * 4, integration was not completed because more than MAXNFE derivative 
-	//      evaluations were needed.  This is approximately (MAXNFE/6) steps.
-	//      The user may continue by simply calling again.  The function counter 
-	//      will be reset to 0, and another MAXNFE function evaluations are allowed.
-	//
-	//    * 5, integration was not completed because the solution vanished, 
-	//      making a pure relative error test impossible.  The user must use 
-	//      a non-zero ABSERR to continue.  Using the one-step integration mode 
-	//      for one step is a good way to proceed.
-	//
-	//    * 6, integration was not completed because the requested accuracy 
-	//      could not be achieved, even using the smallest allowable stepsize. 
-	//      The user must increase the error tolerances ABSERR or RELERR before
-	//      continuing.  It is also necessary to reset FLAG to 2 (or -2 when 
-	//      the one-step integration mode is being used).  The occurrence of 
-	//      FLAG = 6 indicates a trouble spot.  The solution is changing 
-	//      rapidly, or a singularity may be present.  It often is inadvisable 
-	//      to continue.
-	//
-	//    * 7, it is likely that this routine is inefficient for solving
-	//      this problem.  Too much output is restricting the natural stepsize
-	//      choice.  The user should use the one-step integration mode with 
-	//      the stepsize determined by the code.  If the user insists upon 
-	//      continuing the integration, reset FLAG to 2 before calling 
-	//      again.  Otherwise, execution will be terminated.
-	//
-	//    * 8, invalid input parameters, indicates one of the following:
-	//      NEQN <= 0;
-	//      T = TOUT and |FLAG| /= 1;
-	//      RELERR < 0 or ABSERR < 0;
-	//      FLAG == 0  or FLAG < -2 or 8 < FLAG.
-	//
-	//  Licensing:
-	//
-	//    This code is distributed under the GNU LGPL license. 
-	//
-	//  Modified:
-	//
-	//    13 October 2012
-	//
-	//  Author:
-	//
-	//    Original FORTRAN77 version by Herman Watts, Lawrence Shampine.
-	//    C++ version by John Burkardt.
-	//
-	//  Reference:
-	//
-	//    Erwin Fehlberg,
-	//    Low-order Classical Runge-Kutta Formulas with Stepsize Control,
-	//    NASA Technical Report R-315, 1969.
-	//
-	//    Lawrence Shampine, Herman Watts, S Davenport,
-	//    Solving Non-stiff Ordinary Differential Equations - The State of the Art,
-	//    SIAM Review,
-	//    Volume 18, pages 376-411, 1976.
-	//
-	//  Parameters:
-	//
-	//    Input, external F, a user-supplied subroutine to evaluate the
-	//    derivatives Y'(T), of the form:
-	//
-	//      void f ( double t, double y[], double yp[] )
-	//
-	//    Input, int NEQN, the number of equations to be integrated.
-	//
-	//    Input/output, double Y[NEQN], the current solution vector at T.
-	//
-	//    Input/output, double YP[NEQN], the derivative of the current solution 
-	//    vector at T.  The user should not set or alter this information!
-	//
-	//    Input/output, double *T, the current value of the independent variable.
-	//
-	//    Input, double TOUT, the output point at which solution is desired.  
-	//    TOUT = T is allowed on the first call only, in which case the routine
-	//    returns with FLAG = 2 if continuation is possible.
-	//
-	//    Input, double *RELERR, ABSERR, the relative and absolute error tolerances
-	//    for the local error test.  At each step the code requires:
-	//      abs ( local error ) <= RELERR * abs ( Y ) + ABSERR
-	//    for each component of the local error and the solution vector Y.
-	//    RELERR cannot be "too small".  If the routine believes RELERR has been
-	//    set too small, it will reset RELERR to an acceptable value and return
-	//    immediately for user action.
-	//
-	//    Input, int FLAG, indicator for status of integration. On the first call, 
-	//    set FLAG to +1 for normal use, or to -1 for single step mode.  On 
-	//    subsequent continuation steps, FLAG should be +2, or -2 for single 
-	//    step mode.
-	//
-	//    Output, int RKF45_D, indicator for status of integration.  A value of 2 
-	//    or -2 indicates normal progress, while any other value indicates a 
-	//    problem that should be addressed.
-	//
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    R8_RKF45 carries out the Runge-Kutta-Fehlberg method.
+//
+//  Discussion:
+//
+//    This version of the routine uses DOUBLE real arithmetic.
+//
+//    This routine is primarily designed to solve non-stiff and mildly stiff
+//    differential equations when derivative evaluations are inexpensive.
+//    It should generally not be used when the user is demanding
+//    high accuracy.
+//
+//    This routine integrates a system of NEQN first-order ordinary differential
+//    equations of the form:
+//
+//      dY(i)/dT = F(T,Y(1),Y(2),...,Y(NEQN))
+//
+//    where the Y(1:NEQN) are given at T.
+//
+//    Typically the subroutine is used to integrate from T to TOUT but it
+//    can be used as a one-step integrator to advance the solution a
+//    single step in the direction of TOUT.  On return, the parameters in
+//    the call list are set for continuing the integration.  The user has
+//    only to call again (and perhaps define a new value for TOUT).
+//
+//    Before the first call, the user must 
+//
+//    * supply the subroutine F(T,Y,YP) to evaluate the right hand side;
+//      and declare F in an EXTERNAL statement;
+//
+//    * initialize the parameters:
+//      NEQN, Y(1:NEQN), T, TOUT, RELERR, ABSERR, FLAG.
+//      In particular, T should initially be the starting point for integration,
+//      Y should be the value of the initial conditions, and FLAG should 
+//      normally be +1.
+//
+//    Normally, the user only sets the value of FLAG before the first call, and
+//    thereafter, the program manages the value.  On the first call, FLAG should
+//    normally be +1 (or -1 for single step mode.)  On normal return, FLAG will
+//    have been reset by the program to the value of 2 (or -2 in single 
+//    step mode), and the user can continue to call the routine with that 
+//    value of FLAG.
+//
+//    (When the input magnitude of FLAG is 1, this indicates to the program 
+//    that it is necessary to do some initialization work.  An input magnitude
+//    of 2 lets the program know that that initialization can be skipped, 
+//    and that useful information was computed earlier.)
+//
+//    The routine returns with all the information needed to continue
+//    the integration.  If the integration reached TOUT, the user need only
+//    define a new TOUT and call again.  In the one-step integrator
+//    mode, returning with FLAG = -2, the user must keep in mind that 
+//    each step taken is in the direction of the current TOUT.  Upon 
+//    reaching TOUT, indicated by the output value of FLAG switching to 2,
+//    the user must define a new TOUT and reset FLAG to -2 to continue 
+//    in the one-step integrator mode.
+//
+//    In some cases, an error or difficulty occurs during a call.  In that case,
+//    the output value of FLAG is used to indicate that there is a problem
+//    that the user must address.  These values include:
+//
+//    * 3, integration was not completed because the input value of RELERR, the 
+//      relative error tolerance, was too small.  RELERR has been increased 
+//      appropriately for continuing.  If the user accepts the output value of
+//      RELERR, then simply reset FLAG to 2 and continue.
+//
+//    * 4, integration was not completed because more than MAXNFE derivative 
+//      evaluations were needed.  This is approximately (MAXNFE/6) steps.
+//      The user may continue by simply calling again.  The function counter 
+//      will be reset to 0, and another MAXNFE function evaluations are allowed.
+//
+//    * 5, integration was not completed because the solution vanished, 
+//      making a pure relative error test impossible.  The user must use 
+//      a non-zero ABSERR to continue.  Using the one-step integration mode 
+//      for one step is a good way to proceed.
+//
+//    * 6, integration was not completed because the requested accuracy 
+//      could not be achieved, even using the smallest allowable stepsize. 
+//      The user must increase the error tolerances ABSERR or RELERR before
+//      continuing.  It is also necessary to reset FLAG to 2 (or -2 when 
+//      the one-step integration mode is being used).  The occurrence of 
+//      FLAG = 6 indicates a trouble spot.  The solution is changing 
+//      rapidly, or a singularity may be present.  It often is inadvisable 
+//      to continue.
+//
+//    * 7, it is likely that this routine is inefficient for solving
+//      this problem.  Too much output is restricting the natural stepsize
+//      choice.  The user should use the one-step integration mode with 
+//      the stepsize determined by the code.  If the user insists upon 
+//      continuing the integration, reset FLAG to 2 before calling 
+//      again.  Otherwise, execution will be terminated.
+//
+//    * 8, invalid input parameters, indicates one of the following:
+//      NEQN <= 0;
+//      T = TOUT and |FLAG| /= 1;
+//      RELERR < 0 or ABSERR < 0;
+//      FLAG == 0  or FLAG < -2 or 8 < FLAG.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    13 October 2012
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Herman Watts, Lawrence Shampine.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Erwin Fehlberg,
+//    Low-order Classical Runge-Kutta Formulas with Stepsize Control,
+//    NASA Technical Report R-315, 1969.
+//
+//    Lawrence Shampine, Herman Watts, S Davenport,
+//    Solving Non-stiff Ordinary Differential Equations - The State of the Art,
+//    SIAM Review,
+//    Volume 18, pages 376-411, 1976.
+//
+//  Parameters:
+//
+//    Input, external F, a user-supplied subroutine to evaluate the
+//    derivatives Y'(T), of the form:
+//
+//      void f ( double t, double y[], double yp[] )
+//
+//    Input, int NEQN, the number of equations to be integrated.
+//
+//    Input/output, double Y[NEQN], the current solution vector at T.
+//
+//    Input/output, double YP[NEQN], the derivative of the current solution 
+//    vector at T.  The user should not set or alter this information!
+//
+//    Input/output, double *T, the current value of the independent variable.
+//
+//    Input, double TOUT, the output point at which solution is desired.  
+//    TOUT = T is allowed on the first call only, in which case the routine
+//    returns with FLAG = 2 if continuation is possible.
+//
+//    Input, double *RELERR, ABSERR, the relative and absolute error tolerances
+//    for the local error test.  At each step the code requires:
+//      abs ( local error ) <= RELERR * abs ( Y ) + ABSERR
+//    for each component of the local error and the solution vector Y.
+//    RELERR cannot be "too small".  If the routine believes RELERR has been
+//    set too small, it will reset RELERR to an acceptable value and return
+//    immediately for user action.
+//
+//    Input, int FLAG, indicator for status of integration. On the first call, 
+//    set FLAG to +1 for normal use, or to -1 for single step mode.  On 
+//    subsequent continuation steps, FLAG should be +2, or -2 for single 
+//    step mode.
+//
+//    Output, int RKF45_D, indicator for status of integration.  A value of 2 
+//    or -2 indicates normal progress, while any other value indicates a 
+//    problem that should be addressed.
+//
 {
 # define MAXNFE 3000
 
@@ -2078,72 +2125,36 @@ int r8_rkf45(void f(double t, double y[], double yp[]), int neqn,
 }
 //****************************************************************************80
 
-double r8_sign(double x)
 
-	//****************************************************************************80
-	//
-	//  Purpose:
-	//
-	//    R8_SIGN returns the sign of an R8.
-	//
-	//  Licensing:
-	//
-	//    This code is distributed under the GNU LGPL license. 
-	//
-	//  Modified:
-	//
-	//    27 March 2004
-	//
-	//  Author:
-	//
-	//    John Burkardt
-	//
-	//  Parameters:
-	//
-	//    Input, double X, the number whose sign is desired.
-	//
-	//    Output, double R8_SIGN, the sign of X.
-	//
-{
-	if (x < 0.0)
-	{
-		return (-1.0);
-	}
-	else
-	{
-		return (+1.0);
-	}
-}
-//****************************************************************************80
 
 void timestamp()
 
-	//****************************************************************************80
-	//
-	//  Purpose:
-	//
-	//    TIMESTAMP prints the current YMDHMS date as a time stamp.
-	//
-	//  Example:
-	//
-	//    May 31 2001 09:45:54 AM
-	//
-	//  Licensing:
-	//
-	//    This code is distributed under the GNU LGPL license. 
-	//
-	//  Modified:
-	//
-	//    24 September 2003
-	//
-	//  Author:
-	//
-	//    John Burkardt
-	//
-	//  Parameters:
-	//
-	//    None
-	//
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    TIMESTAMP prints the current YMDHMS date as a time stamp.
+//
+//  Example:
+//
+//    May 31 2001 09:45:54 AM
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    24 September 2003
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    None
+//
 {
 # define TIME_SIZE 40
 

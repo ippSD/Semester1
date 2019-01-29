@@ -270,3 +270,5 @@ paket-files/
 **/*OLD*
 /richardson/richardson.u2d
 /3bodies_oop/3bodies_oop.u2d
+*.lastbuildstate
+*.tlog
