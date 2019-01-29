@@ -5,7 +5,7 @@
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)FortranProjects/Libraries" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" RealKIND="realKIND8" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLibrarianTool"/>
+				<Tool Name="VFLibrarianTool" IgnoreDefaultLibraryNames="/NODEFAULTLIB:LIBCMT;MSVCRT;libifcoremdd;libifcoremd"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -14,7 +14,7 @@
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)FortranProjects/Libraries" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" RealKIND="realKIND8" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLibrarianTool"/>
+				<Tool Name="VFLibrarianTool" IgnoreDefaultLibraryNames="/NODEFAULTLIB:LIBCMT;MSVCRT;libifcoremdd;libifcoremd"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -25,6 +25,6 @@
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\temporal_schemes.f90"/>
-		<File RelativePath=".\rkf45.f90"/></Filter></Files>
+		<File RelativePath=".\rkf45.f90"/>
+		<File RelativePath=".\temporal_schemes.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>
