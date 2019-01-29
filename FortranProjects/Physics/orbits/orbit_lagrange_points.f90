@@ -1,5 +1,5 @@
 module orbit_lagrange_points
-    use math
+    use math, only: operator(.times.)
     implicit none
     
     !-----------------------------------------------------------------------!

@@ -2,6 +2,48 @@ module orbit_functions
     implicit none
     contains
     
+    function kepler_2d(u, t) result(f)
+        real, intent(in) :: u(:)
+        real, intent(in) :: t
+        real :: f(size(u))
+        
+        real :: d
+        real, pointer :: r(:), v(:)
+        real, pointer :: dr_dt(:), dv_dt(:)
+        
+        call p2r(u, r); call p2r(f, dr_dt)
+        call p2v(u, v); call p2v(f, dv_dt)
+        
+        ! d = sqrt(x^2+y^2)
+        d = norm2(r)
+        
+        ! dr_dt = v
+        dr_dt = v
+        
+        ! dv_dt = -r/d^2
+        dv_dt = -r / d ** 2d0;
+        
+    contains
+    
+        ! u = [r = (x, y), v = (vx, vy)] = 4
+        ! u = [dr_dt = (dx_dt, dy_dt), dv_dt = (dvx_dt, dvy_dt)] = 4
+    
+        subroutine p2r(state_vector, r_pointer)
+            real, target, intent(in) :: state_vector(:)
+            real, pointer, intent(out) :: r_pointer(:)
+                
+            r_pointer => state_vector(1:2)
+        end subroutine
+    
+        subroutine p2v(state_vector, v_pointer)
+            real, target, intent(in) :: state_vector(:)
+            real, pointer, intent(out) :: v_pointer(:)
+                
+            v_pointer => state_vector(3:4)
+        end subroutine
+    
+    end function
+    
     function f_n_bodies(u, t) result(f)
         real, intent(in) :: u(:)
         real, intent(in) :: t

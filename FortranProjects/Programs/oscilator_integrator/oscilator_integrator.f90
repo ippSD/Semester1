@@ -5,10 +5,10 @@
 !---------------------------------------------------------------------------!
     
 program oscilator_integrator
-    use cauchy
+    use cauchy_problem_solver
     use ode_interfaces, only: propagator => temporal_scheme
     use hamiltonian_functions, only: f => oscilator
-    use numerical_methods
+    use temporal_schemes
     use dislin_mod
     implicit none
     
@@ -31,13 +31,13 @@ program oscilator_integrator
     subtit    = "$x'' + x = 0$"
     subsubtit = "$x_0 = 1 \quad ,\quad x'_0 = 0$"
     
-    legends   = [  "Explicit Euler",     "Runge Kutta 4",   "Implicit Euler"]
-    colors    = [             "RED",             "GREEN",             "BLUE"]
-    datafiles = ["oscilator_ee.dat", "oscilator_rk4.dat", "oscilator_ei.dat"]
+    legends   = ["Explicit Euler",   "Runge Kutta 4", "Implicit Euler"]
+    colors    = [           "RED",           "GREEN",           "BLUE"]
+    datafiles = ["out\osc_ee.dat", "out\osc_rk4.dat", "out\osc_ei.dat"]
     
-    plotfiles = ["x_vs_time.png", "p_vs_x.png"]
-    xlabels = ["$Time\ [s]$", "$X\ [m]$"  ]
-    ylabels = ["$X\ [m]$"   , "$P\ [m/s]$"]
+    plotfiles = ["out\x_vs_time.png", "out\p_vs_x.png"]
+    xlabels = ["$Time\quad[s]$", "$X\quad[m]$"  ]
+    ylabels = ["$X\quad[m]$"   , "$P\quad[m/s]$"]
     
     x(0:) => u(0:n, 1)
     p(0:) => u(0:n, 2)

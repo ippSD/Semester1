@@ -407,8 +407,10 @@ module dislin_mod
             !call ticks(5,'XY')
             if( do_xlabel ) call name(xlabel, 'X')
             if( do_ylabel ) call name(ylabel, 'Y')
+            !call labels('EXP', 'XY')
             
             call graf(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep)
+            
             !if ( plot_type == 1 ) call graf3(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep, 0e0, 1e-3, 0e0, 1e-3)
             call setrgb(0.7,0.7,0.7)
             call grid(1,1)

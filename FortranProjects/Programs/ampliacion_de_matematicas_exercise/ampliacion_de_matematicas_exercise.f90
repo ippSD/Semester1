@@ -6,8 +6,8 @@
 !---------------------------------------------------------------------------!
 
 program ampliacion_de_matematicas_exercise
-    use numerical_methods
-    use cauchy
+    use temporal_schemes, only: runge_kutta_4
+    use cauchy_problem_solver, only: cauchy_problem
     use hamiltonian_functions 
     use dislin_mod
     implicit none

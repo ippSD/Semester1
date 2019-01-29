@@ -1,0 +1,16 @@
+Release\random_n_bodies.obj : \
+  C:\Users\Imanol\Source\Repos\ippSD\Semester1\FortranProjects\Programs\random_n_bodies\random_n_bodies.f90 \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin_mod.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_pointers.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_plots.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\n_bodies\Release\n_bodies.mod
+
+Release\random_n_bodies.obj : \
+  C:\Users\Imanol\Source\Repos\ippSD\Semester1\FortranProjects\Programs\random_n_bodies\random_n_bodies.f90 \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin_mod.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_pointers.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_plots.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\n_bodies\Release\n_bodies.mod
+

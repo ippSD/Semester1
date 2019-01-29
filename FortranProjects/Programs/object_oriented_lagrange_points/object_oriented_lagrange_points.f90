@@ -6,15 +6,14 @@
 !---------------------------------------------------------------------------!
 
 program object_oriented_lagrange_points
-    use cauchy
-    use n_bodies!, only: f_n_bodies, cauchy_problem, runge_kutta
+    use cauchy_problem_solver, only: cauchy_problem
+    use n_bodies, only: calc_n_bodies!, only: f_n_bodies, cauchy_problem, runge_kutta
     use orbit_plots!, only: plot_orbit_xy
     use orbit_exports
     use orbit_lagrange_points
-    use objects!, only: GalaxyPointer
+    use orbit_objects!, only: GalaxyPointer
     implicit none
     
-    logical, parameter :: DO_PLOT = .true.
     character(len=10), parameter :: FILENAMES(7) = & 
         ["earth.dat", &
          "moon.dat",  &
@@ -64,9 +63,7 @@ program object_oriented_lagrange_points
         close(13)
     end do
     
-    if (DO_PLOT) then
-        call plots(u)
-    end if
+    call plots(u)
 
     contains
     
@@ -81,7 +78,7 @@ program object_oriented_lagrange_points
         ! Plot Lagrange Points
         p = size(u(0,:))/7 - 2
         do i = 1, p
-            call plot_orbit_xy( u, i+2, FILENAMES(i+2) )
+            call plot_orbit_xy( u, i+2, FILENAMES(i+2)(1:2) )
         end do
     end subroutine plots
     

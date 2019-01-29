@@ -1,4 +1,5 @@
 module orbit_exports
+    use orbit_check
     implicit none
     contains
     
@@ -8,19 +9,16 @@ module orbit_exports
         
         integer :: i, m, n, s, idx_i, idx_f
         
+        if (.not. check_state_matrix(u)) return
         n = size(u(0,:))
         m = size(u(:,1)) - 1
-        if(mod(n,7) /= 0) then
-            write(*,*) "Error: State vector is not multiple of 7."
-            return
-        end if
         s = n / 7
         
         idx_i = s + 1
         idx_f = 4 * s
         do i = 0, m
             write(unit,*) u(i, idx_i:idx_f)
-        end do    
+        end do
     end subroutine
     
     subroutine save_body_orbit(unit, u, l)
@@ -29,17 +27,11 @@ module orbit_exports
         
         integer :: i, m, n, s, idx_i, idx_f
         
+        if (.not. check_state_matrix(u)) return
+        if (.not. check_existing_body(u(0,:), l)) return
         n = size(u(0,:))
         m = size(u(:,1)) - 1
-        if(mod(n,7) /= 0) then
-            write(*,*) "Error: State vector is not multiple of 7."
-            return
-        end if
         s = n / 7
-        if(l > s) then
-            write(*,*) "Error: Body does not exist."
-            return
-        end if
         
         idx_i = s + (l-1) * 3 + 1
         idx_f = s + (l-1) * 3 + 3

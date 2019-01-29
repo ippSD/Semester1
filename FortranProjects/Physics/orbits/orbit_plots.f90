@@ -1,5 +1,5 @@
 module orbit_plots
-    use dislin_mod
+    use dislin_mod, only: plot, plot_title, plot_end
     implicit none
     contains
     

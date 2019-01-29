@@ -36,11 +36,11 @@ int main() {
 
 	getchar();
 
-	cauchy_problem<double>(time_domain, kepler<double>, runge_kutta<double>, u_rk);
+	cauchy_problem<double>(time_domain, kepler<double, N>, runge_kutta<double>, u_rk);
 
 	getchar();
 
-	cauchy_problem<double>(time_domain, kepler<double>, euler_explicit<double>, u_ee);
+	cauchy_problem<double>(time_domain, kepler<double, N>, euler_explicit<double>, u_ee);
 
     cout << "Kepler Integrator" << endl;
 	cout << "Position and radius after 1 orbit period." << endl << endl;

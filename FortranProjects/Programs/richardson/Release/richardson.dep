@@ -1,0 +1,18 @@
+Release\richardson.obj : \
+  C:\Users\Imanol\Source\Repos\ippSD\Semester1\FortranProjects\Programs\richardson\richardson.f90 \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin_mod.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\temporal_schemes\Release\temporal_schemes.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\cauchy_problem_solver.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\ode_interfaces.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\richardson_extrapolation.mod
+
+Release\richardson.obj : \
+  C:\Users\Imanol\Source\Repos\ippSD\Semester1\FortranProjects\Programs\richardson\richardson.f90 \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin_mod.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\temporal_schemes\Release\temporal_schemes.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\cauchy_problem_solver.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\ode_interfaces.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\richardson_extrapolation.mod
+

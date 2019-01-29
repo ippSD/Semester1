@@ -54,8 +54,8 @@ module orbit_check
     !-----------------------------------------------------------------------!
     !   ( FUNCTION ) check_existing_body                                    !
     !-----------------------------------------------------------------------!
-    !   Checks if the selected bodystate vector is compatible with the orbit functions   !
-    !   of this repo.                                                       !
+    !   Checks if the selected bodystate vector is compatible with          !
+    !   the orbit functions of this repo.                                   !
     !-----------------------------------------------------------------------!
     !   Parameters: !                                                       !
     !---------------!-------------------------------------------------------!

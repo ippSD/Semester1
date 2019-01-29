@@ -1,4 +1,7 @@
 module math
+    use Jacobian_module
+    use Linear_systems
+    use Non_Linear_Systems
     implicit none
     
     !-----------------------------------------------------------------------!
