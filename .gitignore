@@ -273,3 +273,7 @@ paket-files/
 *.lastbuildstate
 *.tlog
 *.u2d
+*.aux
+*.out
+*.gz
+*.toc

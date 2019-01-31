@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph DataVirtualized="True" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Category="CodeMap_Project" Bounds="46.5816666666668,591.72,77.0833333333334,25.96" Label="dislin_mod" />
+    <Node Id="FortranProjects\Graphics\examples\plots_with_dislin\plots_with_dislin.vfproj" Category="CodeMap_Project" Bounds="270.03,80,106.216666666667,25.96" Label="plots_with_dislin" />
+    <Node Id="FortranProjects\Mathematics\examples\ampliacion_de_matematicas_exercise\ampliacion_de_matematicas_exercise.vfproj" Category="CodeMap_Project" Bounds="40,247.88,214.97,25.96" Label="ampliacion_de_matematicas_exercise" />
+    <Node Id="FortranProjects\Mathematics\examples\oscilator_integrator\oscilator_integrator.vfproj" Category="CodeMap_Project" Bounds="183.68,135.96,122.493333333333,25.96" Label="oscilator_integrator" />
+    <Node Id="FortranProjects\Mathematics\examples\richardson\richardson.vfproj" Category="CodeMap_Project" Bounds="40,80,75.6733333333333,25.96" Label="richardson" />
+    <Node Id="FortranProjects\Mathematics\hamiltonian_functions\hamiltonian_functions.vfproj" Category="CodeMap_Project" Bounds="193.953333333333,647.68,136.483333333333,25.96" Label="hamiltonian_functions" />
+    <Node Id="FortranProjects\Mathematics\math\math.vfproj" Category="CodeMap_Project" Bounds="193.953333333333,535.76,50,25.96" Label="math" />
+    <Node Id="FortranProjects\Mathematics\numerical_methods\numerical_methods.vfproj" Category="CodeMap_Project" Bounds="193.953333333333,591.72,123.47,25.96" Label="numerical_methods" />
+    <Node Id="FortranProjects\Mathematics\temporal_schemes\temporal_schemes.vfproj" Category="CodeMap_Project" Bounds="273.953333333333,535.76,118.34,25.96" Label="temporal_schemes" />
+    <Node Id="FortranProjects\Physics\examples\object_oriented_lagrange_points\object_oriented_lagrange_points.vfproj" Category="CodeMap_Project" Bounds="40,191.92,191.836666666667,25.96" Label="object_oriented_lagrange_points" />
+    <Node Id="FortranProjects\Physics\examples\poincare_map\poincare_map.vfproj" Category="CodeMap_Project" Bounds="145.673333333333,80,94.3566666666667,25.96" Label="poincare_map" />
+    <Node Id="FortranProjects\Physics\examples\random_n_bodies\random_n_bodies.vfproj" Category="CodeMap_Project" Bounds="40,135.96,113.68,25.96" Label="random_n_bodies" />
+    <Node Id="FortranProjects\Physics\n_bodies\n_bodies.vfproj" Category="CodeMap_Project" Bounds="174.525,419.8,67.1966666666667,25.96" Label="n_bodies" />
+    <Node Id="FortranProjects\Physics\orbits\orbits.vfproj" Category="CodeMap_Project" Bounds="174.525,363.84,50.3233333333333,25.96" Label="orbits" />
+    <Node Id="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" Category="CodeMap_SolutionFolder" Bounds="0,0,432.293333333334,713.64" Group="Expanded" Label="FortranProjects" LayoutSettings="TopToBottom" />
+    <Node Id="Graphics{EE24028E-67DE-40E2-A2A6-A6BF43520CC1}" Category="CodeMap_SolutionFolder" Bounds="26.5816666666668,551.72,117.083333333333,85.96" Group="Expanded" Label="Graphics" />
+    <Node Id="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" Category="CodeMap_SolutionFolder" Bounds="173.953333333333,495.76,238.34,197.88" Group="Expanded" Label="Mathematics" />
+    <Node Id="Physics{CBADCB57-C2D9-4AF2-8A12-1564BB9ABADC}" Category="CodeMap_SolutionFolder" Bounds="154.525,323.84,107.196666666667,141.92" Group="Expanded" Label="Physics" />
+    <Node Id="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Category="CodeMap_SolutionFolder" Bounds="20,40,376.246666666667,253.84" Group="Expanded" Label="Programs" />
+  </Nodes>
+  <Links>
+    <Link Source="FortranProjects\Graphics\examples\plots_with_dislin\plots_with_dislin.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="97.0813087993896,105.960003356934,292.136531126032,307.316966030245" />
+    <Link Source="FortranProjects\Mathematics\examples\ampliacion_de_matematicas_exercise\ampliacion_de_matematicas_exercise.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="95.5246639154403,273.840000610352,119.252816950196,139.126721305502" />
+    <Link Source="FortranProjects\Mathematics\examples\ampliacion_de_matematicas_exercise\ampliacion_de_matematicas_exercise.vfproj" Target="FortranProjects\Mathematics\hamiltonian_functions\hamiltonian_functions.vfproj" Bounds="227.595597286969,273.840000610352,25.1619335668023,192.995533606173" />
+    <Link Source="FortranProjects\Mathematics\examples\ampliacion_de_matematicas_exercise\ampliacion_de_matematicas_exercise.vfproj" Target="FortranProjects\Mathematics\numerical_methods\numerical_methods.vfproj" Bounds="227.655177795835,273.840000610352,18.4958449010158,137.040866108698" />
+    <Link Source="FortranProjects\Mathematics\examples\ampliacion_de_matematicas_exercise\ampliacion_de_matematicas_exercise.vfproj" Target="FortranProjects\Mathematics\temporal_schemes\temporal_schemes.vfproj" Bounds="237.168288404049,273.840000610352,72.209351030104,83.2028434305053" />
+    <Link Source="FortranProjects\Mathematics\examples\oscilator_integrator\oscilator_integrator.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="95.6145409040647,161.920010070801,216.535606025742,251.064649273709" />
+    <Link Source="FortranProjects\Mathematics\examples\oscilator_integrator\oscilator_integrator.vfproj" Target="FortranProjects\Mathematics\hamiltonian_functions\hamiltonian_functions.vfproj" Bounds="259.959961727439,161.920010070801,60.7977618451564,305.013630573159" />
+    <Link Source="FortranProjects\Mathematics\examples\oscilator_integrator\oscilator_integrator.vfproj" Target="FortranProjects\Mathematics\numerical_methods\numerical_methods.vfproj" Bounds="254.778921166049,161.920010070801,65.1711613638594,249.172882047719" />
+    <Link Source="FortranProjects\Mathematics\examples\oscilator_integrator\oscilator_integrator.vfproj" Target="FortranProjects\Mathematics\temporal_schemes\temporal_schemes.vfproj" Bounds="323.527082091019,161.920010070801,2.70625573443556,192.920867370497" />
+    <Link Source="FortranProjects\Mathematics\examples\richardson\richardson.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="83.5167487155297,105.95969071483,69.7696915747396,305.066832271384" />
+    <Link Source="FortranProjects\Mathematics\examples\richardson\richardson.vfproj" Target="FortranProjects\Mathematics\numerical_methods\numerical_methods.vfproj" Bounds="159.801832389655,105.95969071483,83.3856922202616,305.158985862945" />
+    <Link Source="FortranProjects\Mathematics\examples\richardson\richardson.vfproj" Target="FortranProjects\Mathematics\temporal_schemes\temporal_schemes.vfproj" Bounds="164.04219508011,105.95969071483,150.08216346137,250.162951253541" />
+    <Link Source="FortranProjects\Physics\examples\object_oriented_lagrange_points\object_oriented_lagrange_points.vfproj" Target="FortranProjects\Mathematics\numerical_methods\numerical_methods.vfproj" Bounds="216.317161618062,217.879993896484,29.4514943502459,193.022973740405" />
+    <Link Source="FortranProjects\Physics\examples\object_oriented_lagrange_points\object_oriented_lagrange_points.vfproj" Target="FortranProjects\Physics\n_bodies\n_bodies.vfproj" Bounds="228.298058631504,217.879993896484,240.690816274341,223.771922708963" />
+    <Link Source="FortranProjects\Physics\examples\object_oriented_lagrange_points\object_oriented_lagrange_points.vfproj" Target="FortranProjects\Physics\orbits\orbits.vfproj" Bounds="231.658594435985,217.879993896484,224.922193559587,168.54305478732" />
+    <Link Source="FortranProjects\Physics\examples\poincare_map\poincare_map.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="90.3438473787377,105.960003356934,173.564138386267,306.011525775435" />
+    <Link Source="FortranProjects\Physics\examples\poincare_map\poincare_map.vfproj" Target="FortranProjects\Physics\n_bodies\n_bodies.vfproj" Bounds="318.448337605794,102.179169037339,197.383056571386,38.4871467814662" />
+    <Link Source="FortranProjects\Physics\examples\poincare_map\poincare_map.vfproj" Target="FortranProjects\Physics\orbits\orbits.vfproj" Bounds="280.004717221446,105.960003356934,187.340900979759,278.393223557485" />
+    <Link Source="FortranProjects\Physics\examples\random_n_bodies\random_n_bodies.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="85.867318511603,161.919994812012,84.9681607494976,249.360981810086" />
+    <Link Source="FortranProjects\Physics\examples\random_n_bodies\random_n_bodies.vfproj" Target="FortranProjects\Physics\n_bodies\n_bodies.vfproj" Bounds="232.098331298828,148.939995944255,283.566702067057,5.64860002327805E-06" />
+    <Link Source="FortranProjects\Physics\examples\random_n_bodies\random_n_bodies.vfproj" Target="FortranProjects\Physics\orbits\orbits.vfproj" Bounds="190.774197696225,161.919994812012,267.911917170215,224.12520163572" />
+    <Link Source="FortranProjects\Physics\orbits\orbits.vfproj" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Bounds="126.061670247835,406.548854153089,329.881658813037,22.9282865068838" />
+    <Link Source="FortranProjects\Physics\orbits\orbits.vfproj" Target="FortranProjects\Mathematics\math\math.vfproj" Bounds="246.323284026285,380.354970257199,209.620045034588,21.8252471120393" />
+    <Link Source="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" Target="Graphics{EE24028E-67DE-40E2-A2A6-A6BF43520CC1}" Category="Contains" FetchingParent="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" />
+    <Link Source="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" Target="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" Category="Contains" FetchingParent="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" />
+    <Link Source="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" Target="Physics{CBADCB57-C2D9-4AF2-8A12-1564BB9ABADC}" Category="Contains" FetchingParent="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" />
+    <Link Source="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" Target="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Category="Contains" FetchingParent="FortranProjects{297C5977-0C8F-4122-84D5-FB05A5DE55DF}" />
+    <Link Source="Graphics{EE24028E-67DE-40E2-A2A6-A6BF43520CC1}" Target="FortranProjects\Graphics\dislin_mod\dislin_mod.vfproj" Category="Contains" FetchingParent="Graphics{EE24028E-67DE-40E2-A2A6-A6BF43520CC1}" />
+    <Link Source="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" Target="FortranProjects\Mathematics\hamiltonian_functions\hamiltonian_functions.vfproj" Category="Contains" FetchingParent="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" />
+    <Link Source="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" Target="FortranProjects\Mathematics\math\math.vfproj" Category="Contains" FetchingParent="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" />
+    <Link Source="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" Target="FortranProjects\Mathematics\numerical_methods\numerical_methods.vfproj" Category="Contains" FetchingParent="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" />
+    <Link Source="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" Target="FortranProjects\Mathematics\temporal_schemes\temporal_schemes.vfproj" Category="Contains" FetchingParent="Mathematics{9F16E15A-158D-4585-A27D-27EBFB277004}" />
+    <Link Source="Physics{CBADCB57-C2D9-4AF2-8A12-1564BB9ABADC}" Target="FortranProjects\Physics\n_bodies\n_bodies.vfproj" Category="Contains" FetchingParent="Physics{CBADCB57-C2D9-4AF2-8A12-1564BB9ABADC}" />
+    <Link Source="Physics{CBADCB57-C2D9-4AF2-8A12-1564BB9ABADC}" Target="FortranProjects\Physics\orbits\orbits.vfproj" Category="Contains" FetchingParent="Physics{CBADCB57-C2D9-4AF2-8A12-1564BB9ABADC}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Graphics\examples\plots_with_dislin\plots_with_dislin.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Mathematics\examples\ampliacion_de_matematicas_exercise\ampliacion_de_matematicas_exercise.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Mathematics\examples\oscilator_integrator\oscilator_integrator.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Mathematics\examples\richardson\richardson.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Physics\examples\object_oriented_lagrange_points\object_oriented_lagrange_points.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Physics\examples\poincare_map\poincare_map.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+    <Link Source="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" Target="FortranProjects\Physics\examples\random_n_bodies\random_n_bodies.vfproj" Category="Contains" FetchingParent="Programs{4441747E-F270-4B09-A20A-A7D17C305DF0}" />
+  </Links>
+  <Categories>
+    <Category Id="CodeMap_Project" Label="Non Assembly Project" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Non Assembly Projects" />
+    <Category Id="CodeMap_SolutionFolder" Label="Solution Folder" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Solution Folder" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="DataVirtualized" Label="Data Virtualized" Description="If true, the graph can contain nodes and links that represent data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="FetchingParent" DataType="Microsoft.VisualStudio.GraphModel.GraphNodeId" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="LayoutSettings" DataType="Microsoft.VisualStudio.Diagrams.View.GroupLayoutStyle" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="Visibility" Label="Visibility" Description="Defines whether a node in the graph is visible or not" DataType="System.Windows.Visibility" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Results" ValueLabel="True">
+      <Condition Expression="HasCategory('QueryResult')" />
+      <Setter Property="Background" Value="#FFBCFFBE" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Test Project" ValueLabel="Test Project">
+      <Condition Expression="HasCategory('CodeMap_TestProject')" />
+      <Setter Property="Icon" Value="CodeMap_TestProject" />
+      <Setter Property="Background" Value="#FF307A69" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Web Project" ValueLabel="Web Project">
+      <Condition Expression="HasCategory('CodeMap_WebProject')" />
+      <Setter Property="Icon" Value="CodeMap_WebProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Windows Store Project" ValueLabel="Windows Store Project">
+      <Condition Expression="HasCategory('CodeMap_WindowsStoreProject')" />
+      <Setter Property="Icon" Value="CodeMap_WindowsStoreProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Phone Project" ValueLabel="Phone Project">
+      <Condition Expression="HasCategory('CodeMap_PhoneProject')" />
+      <Setter Property="Icon" Value="CodeMap_PhoneProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Portable Library" ValueLabel="Portable Library">
+      <Condition Expression="HasCategory('CodeMap_PortableLibraryProject')" />
+      <Setter Property="Icon" Value="CodeMap_PortableLibraryProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="WPF Project" ValueLabel="WPF Project">
+      <Condition Expression="HasCategory('CodeMap_WpfProject')" />
+      <Setter Property="Icon" Value="CodeMap_WpfProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="VSIX Project" ValueLabel="VSIX Project">
+      <Condition Expression="HasCategory('CodeMap_VsixProject')" />
+      <Setter Property="Icon" Value="CodeMap_VsixProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Modeling Project" ValueLabel="Modeling Project">
+      <Condition Expression="HasCategory('CodeMap_ModelingProject')" />
+      <Setter Property="Icon" Value="CodeMap_ModelingProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Assembly" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Assembly')" />
+      <Setter Property="Background" Value="#FF094167" />
+      <Setter Property="Stroke" Value="#FF094167" />
+      <Setter Property="Icon" Value="CodeSchema_Assembly" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Namespace" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Namespace')" />
+      <Setter Property="Background" Value="#FF0E619A" />
+      <Setter Property="Stroke" Value="#FF0E619A" />
+      <Setter Property="Icon" Value="CodeSchema_Namespace" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Interface" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Interface')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Interface" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Struct" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Struct')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Struct" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Enumeration" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Enum')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Enum" />
+      <Setter Property="LayoutSettings" Value="List" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Delegate" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Delegate')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Delegate" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Class" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Type')" />
+      <Setter Property="Background" Value="#FF0E70C0" />
+      <Setter Property="Stroke" Value="#FF0E70C0" />
+      <Setter Property="Icon" Value="CodeSchema_Class" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Property')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Property" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Method" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Method') Or HasCategory('CodeSchema_CallStackUnresolvedMethod')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Method" />
+      <Setter Property="LayoutSettings" Value="List" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Event" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Event')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Event" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Field')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Field" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Out Parameter" ValueLabel="Has category">
+      <Condition Expression="CodeSchemaProperty_IsOut = 'True'" />
+      <Setter Property="Icon" Value="CodeSchema_OutParameter" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Parameter" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Parameter')" />
+      <Setter Property="Icon" Value="CodeSchema_Parameter" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Local Variable" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_LocalExpression')" />
+      <Setter Property="Icon" Value="CodeSchema_LocalExpression" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Externals" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Externals')" />
+      <Setter Property="Background" Value="#FF424242" />
+      <Setter Property="Stroke" Value="#FF424242" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Inherits From" ValueLabel="True">
+      <Condition Expression="HasCategory('InheritsFrom')" />
+      <Setter Property="Stroke" Value="#FF00A600" />
+      <Setter Property="StrokeDashArray" Value="2 0" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Implements" ValueLabel="True">
+      <Condition Expression="HasCategory('Implements')" />
+      <Setter Property="Stroke" Value="#8000A600" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Calls" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_Calls')" />
+      <Setter Property="Stroke" Value="#FFFF00FF" />
+      <Setter Property="StrokeDashArray" Value="2 0" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Function Pointer" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FunctionPointer')" />
+      <Setter Property="Stroke" Value="#FFFF00FF" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Field Read" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FieldRead')" />
+      <Setter Property="Stroke" Value="#FF00AEEF" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Field Write" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FieldWrite')" />
+      <Setter Property="Stroke" Value="#FF00AEEF" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Inherits From" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('InheritsFrom') And Target.HasCategory('CodeSchema_Class')" />
+      <Setter Property="TargetDecorator" Value="OpenArrow" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Implements" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('Implements') And Target.HasCategory('CodeSchema_Interface')" />
+      <Setter Property="TargetDecorator" Value="OpenArrow" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Comment Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="Source.HasCategory('Comment')" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Cursor Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsCursorLocation" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Disabled Breakpoint Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="DisabledBreakpointCount" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Enabled Breakpoint Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="EnabledBreakpointCount" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Instruction Pointer Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsInstructionPointerLocation" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Callstack Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsCurrentCallstackFrame" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Return" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeSchema_ReturnTypeLink')" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="References" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('References')" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Uses Attribute" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeSchema_AttributeUse')" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Solution Folder" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeMap_SolutionFolder')" />
+      <Setter Property="Background" Value="#FFDEBA83" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Project Reference" ValueLabel="Project Reference">
+      <Condition Expression="HasCategory('CodeMap_ProjectReference')" />
+      <Setter Property="Stroke" Value="#9A9A9A" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="External Reference" ValueLabel="External Reference">
+      <Condition Expression="HasCategory('CodeMap_ExternalReference')" />
+      <Setter Property="Stroke" Value="#9A9A9A" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+  </Styles>
+</DirectedGraph>

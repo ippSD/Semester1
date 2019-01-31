@@ -211,10 +211,102 @@ module dislin_mod
             do_save = do_save, &
             xlabel = opt_xlabel, &
             ylabel = opt_ylabel, &
-            filename = opt_filename &
+            filename = opt_filename, &
+            logaxis = .false. &
         )
     
     end subroutine scatter
+    
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) semilogy                                             !
+    !-----------------------------------------------------------------------!
+    !   Plots (x,y) curves on Log10 y axis with Matlab style.               !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) x                                           !
+    !               ! X-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) y                                           !
+    !               ! Y-axis plot data.                                     !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) color                                     !
+    !   OPTIONAL    ! Color of the curve. Available colors are:             !
+    !               ! 'BLACK', 'RED', 'GREEN', 'BLUE', 'CYAN', 'YELLOW',    !
+    !               ! 'ORANGE', 'MAGENTA', 'WHITE', 'FORE' (default),       !
+    !               ! 'BACK' (background), 'GRAY' and                       !
+    !               ! 'HALF' (half intensity of foreground)                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) xlabel                                    !
+    !   OPTIONAL    ! Title of the X-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !   OPTIONAL    ! Title of the Y-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) ylabel                                    !
+    !   OPTIONAL    ! Title of the Y-label.                                 !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (character) filename                                  !
+    !   OPTIONAL    ! Filename in which the plot is saved.                  !
+    !               ! File type goes according to filename extension.       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (logical) hold_on                                     !
+    !   OPTIONAL    ! Does not close the plot on exit,                      !
+    !               ! allowing multiple plots.                              !
+    !---------------!-------------------------------------------------------!
+    subroutine semilogy(x, y, color, xlabel, ylabel, filename, hold_on)
+        real, intent(in) :: x(:), y(:)
+        character(len=*), optional :: color, xlabel, ylabel, filename
+        logical, optional :: hold_on
+        
+        logical :: do_color  = .false., &
+                   do_xlabel = .false., &
+                   do_ylabel = .false., &
+                   do_save   = .false., &
+                   do_hold  = .false.
+        
+        character( len = 127 ) :: opt_color    = "FORE", &
+                                  opt_xlabel   = ""    , &
+                                  opt_ylabel   = ""    , &
+                                  opt_filename = ""
+        
+        if ( present( color ) ) then
+            do_color = .true.
+            opt_color = color
+        end if
+        
+        if ( present( xlabel ) ) then
+            do_xlabel = .true.
+            opt_xlabel = xlabel
+        end if
+        
+        if ( present( ylabel ) ) then
+            do_ylabel = .true.
+            opt_ylabel = ylabel
+        end if
+        
+        if ( present( filename ) ) then
+            do_save = .true.
+            opt_filename = filename
+        end if
+        
+        if ( present( hold_on ) ) do_hold = hold_on
+        
+        call plot_hub( &
+            x = x, &
+            y = y, &
+            color = opt_color, &
+            plot_type = 0, &
+            hold_on = do_hold, &
+            do_xlabel = do_xlabel, &
+            do_ylabel = do_ylabel, &
+            do_save = do_save, &
+            xlabel = opt_xlabel, &
+            ylabel = opt_ylabel, &
+            filename = opt_filename, &
+            logaxis = .true. &
+        )
+    end subroutine semilogy
     
     !-----------------------------------------------------------------------!
     !   ( SUBROUTINE ) plot                                                 !
@@ -302,7 +394,8 @@ module dislin_mod
             do_save = do_save, &
             xlabel = opt_xlabel, &
             ylabel = opt_ylabel, &
-            filename = opt_filename &
+            filename = opt_filename, &
+            logaxis = .false. &
         )
     
     end subroutine plot
@@ -354,17 +447,20 @@ module dislin_mod
     !               ! Filename in which the plot is saved if do_save is     !
     !               ! true. File type goes according to filename extension. !
     !---------------!-------------------------------------------------------!
-    subroutine plot_hub(x, y, color, plot_type, hold_on, do_xlabel, do_ylabel, do_save, xlabel, ylabel, filename)
+    !   IN          ! (logical) logaxis                                     !
+    !               ! If true, use Log Y-Axis.                              !
+    !---------------!-------------------------------------------------------!
+    subroutine plot_hub(x, y, color, plot_type, hold_on, do_xlabel, do_ylabel, do_save, xlabel, ylabel, filename, logaxis)
         real, intent(in) :: x(:), y(:)
         integer, intent(in) :: plot_type
         logical, intent(in) :: hold_on, do_xlabel, do_ylabel, do_save
         character(len=*), intent(in) :: color, xlabel, ylabel, filename
-        
+        logical, intent(in) :: logaxis
         
         integer :: i, ic, level, filename_len
         character(len=3) :: extension
         character(len=:), allocatable :: trimmed_filename
-        real :: xmin, xmax, ymin, ymax, xstep, ystep
+        real :: xmin, xmax, ymin, ymax, xstep, ystep, yminlog10, ymaxlog10, ysteplog10
         
         call getlev(level)
         xmin = minval(x)
@@ -373,6 +469,12 @@ module dislin_mod
         ymax = maxval(y)
         xstep = (xmax - xmin) / 10e0
         ystep = (ymax - ymin) / 10e0
+        !yminlog10 = 10e0 ** (int(log10(ymin)))
+        !ymaxlog10 = 10e0 ** (int(log10(ymax)))
+        !ysteplog10  = 10e0 ** (int(log10(ymax) - log10(ymin)))
+        yminlog10 = int(log10(ymin)) - 1
+        ymaxlog10 = int(log10(ymax)) + 1
+        ysteplog10  = (ymaxlog10 - yminlog10) / 10e0
         
         if(level == 0) then
             if( do_save ) then
@@ -407,9 +509,18 @@ module dislin_mod
             !call ticks(5,'XY')
             if( do_xlabel ) call name(xlabel, 'X')
             if( do_ylabel ) call name(ylabel, 'Y')
-            !call labels('EXP', 'XY')
             
-            call graf(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep)
+            if ( xmax - xmin < 1d-2 ) call labels('EXP', 'X')
+            if ( xmax - xmin >= 1d5 ) call labels('EXP', 'X')
+            if ( ymax - ymin < 1d-2 ) call labels('EXP', 'Y')
+            if ( ymax - ymin >= 1d5 ) call labels('EXP', 'Y')
+            if ( logaxis )  then
+                call axsscl('LOG', 'Y')
+                call labels('EXP', 'Y')
+                call graf(xmin,xmax,xmin,xstep,yminlog10,ymaxlog10,yminlog10,ysteplog10)
+            else
+                call graf(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep)
+            end if
             
             !if ( plot_type == 1 ) call graf3(xmin,xmax,xmin,xstep,ymin,ymax,ymin,ystep, 0e0, 1e-3, 0e0, 1e-3)
             call setrgb(0.7,0.7,0.7)

@@ -1,12 +1,14 @@
 \documentclass{article}
 
-\title{Programación de modelos físico-matemáticos con FORTRAN 90}
+\title{\Huge{Programación de modelos físico-matemáticos con FORTRAN 90}}
 \author{Borja del Campo López \and Imanol Sardón Delgado}
 \date{28 de enero de 2019}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage[hidelinks]{hyperref}
+
+\graphicspath{ {./Figures/} }
 
 \begin{document}
 	
@@ -311,26 +313,28 @@
 		\end{center}
 	\end{figure}
 	
-	En las figuras correspondientes al punto L1 se observa el carácter inestable ya que al aplicar variaciones en las condiciones iniciales se obtienen valores muy dispersos de este punto.
+	En las figuras correspondientes al punto L1 se observa el carácter inestable ya que al aplicar variaciones positivas en las condiciones iniciales, y por tanto de incremento de energía, se obtienen valores muy dispersos de este punto.
 	
-	Por otro lado, debido a que el punto L4 es estable, se observa como para variaciones de las condiciones iniciales no existen cambios de mayor orden de magnitud en el valor de este punto, a excepción de dos puntos para variaciones de la velocidad $v_{y0}$.
+	Por otro lado, debido a que el punto L4 es estable, se observa como para variaciones positivas de las condiciones iniciales no existen cambios de mayor orden de magnitud en el valor de este punto, a excepción de dos puntos para variaciones de la velocidad $v_{y0}$.
 	
 	\newpage
 	
 	\section{Interpolación de Richardson}
 	
-	Para la realización de este apartado se va a resolver un problema mediante la subrutina \textit{cauchy\_problem} con un dominio temporal, se resolverá el mismo problema para $\frac{\Delta t}{2}$ y también se hallará la solución a este mismo problema aplicando la extrapolación de Richardson. Posteriormente, se va a comprobar el error cometido con ambas aproximaciones respecto de la solución analítica. Para ello se ha usado un módulo que contiene una subrutina que calcula dicha interpolación, además de los módulos ya empleados anteriormente en la resolución de otros problemas de Cauchy. Finalmente se han representado el error cometido con la extrapolación de Richardson, los errores de cometidos con Cauchy y Richardson respecto a la solución analítica y el error de la interpolación de Richardson respecto a la solución real.
+	Para la realización de este apartado se va a resolver un problema mediante la subrutina \textit{cauchy\_problem} con un dominio temporal, se resolverá el mismo problema para $\frac{\Delta t}{2}$ y también se hallará la solución a dicho problema aplicando la extrapolación de Richardson. Posteriormente, se va a comprobar el error cometido con ambas aproximaciones respecto de la solución analítica.
+	
+	Para ello se ha usado un módulo que contiene una subrutina que calcula dicha interpolación, además de los módulos ya empleados anteriormente en la resolución de otros problemas de Cauchy. Finalmente se han representado el logaritmo del error cometido con la extrapolación de Richardson, los errores cometidos con el método numérico para resolver el problema de Cauchy y por Richardson respecto a la solución analítica y el error real de la interpolación de Richardson respecto a la solución analítica frente al error que proporciona el método de Richardson.
 	
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[scale=0.45]{richardson1.png}
+			\includegraphics[scale=0.4]{richardson1.png}
 			\caption{Error cometido con la extrapolación de Richardson}
 		\end{center}
 	\end{figure}
 
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[scale=0.45]{richardson2.png}
+			\includegraphics[scale=0.4]{richardson2.png}
 			\caption{Error real de la extrapolación de Richardson y el problema de Cauchy}
 		\end{center}
 	\end{figure}
@@ -339,7 +343,7 @@
 
 	\begin{figure}[h!]
 		\begin{center}
-			\includegraphics[scale=0.45]{richardson3.png}
+			\includegraphics[scale=0.4]{richardson3.png}
 			\caption{Error cometido con la extrapolación de Richardson respecto a la solución analítica}
 		\end{center}
 	\end{figure}
