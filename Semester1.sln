@@ -192,6 +192,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{6DE8D4D9-2
 		docs\Informe Programacion.tex = docs\Informe Programacion.tex
 	EndProjectSection
 EndProject
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "orbit_integrators_vs_gmat", "orbit_integrators_vs_gmat\orbit_integrators_vs_gmat.vfproj", "{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}"
+EndProject
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "orbital_integrators", "orbital_integrators\orbital_integrators.vfproj", "{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -326,6 +330,18 @@ Global
 		{E008100D-7DAC-4E24-B894-9189B6EB048D}.Release|Any CPU.ActiveCfg = Release|Win32
 		{E008100D-7DAC-4E24-B894-9189B6EB048D}.Release|x86.ActiveCfg = Release|Win32
 		{E008100D-7DAC-4E24-B894-9189B6EB048D}.Release|x86.Build.0 = Release|Win32
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}.Debug|x86.ActiveCfg = Debug|Win32
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}.Debug|x86.Build.0 = Debug|Win32
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}.Release|Any CPU.ActiveCfg = Release|Win32
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}.Release|x86.ActiveCfg = Release|Win32
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4}.Release|x86.Build.0 = Release|Win32
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}.Debug|x86.ActiveCfg = Debug|Win32
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}.Debug|x86.Build.0 = Debug|Win32
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}.Release|Any CPU.ActiveCfg = Release|Win32
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}.Release|x86.ActiveCfg = Release|Win32
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -370,6 +386,8 @@ Global
 		{42F585F5-5430-49F0-BB4A-E8C0BFE5D4A3} = {D8D8D71D-A13A-438F-933C-01526DFA3DC4}
 		{DD159FFA-2FD9-4F82-86A0-A9F9E76D8305} = {D8D8D71D-A13A-438F-933C-01526DFA3DC4}
 		{6DE8D4D9-23DA-4B6A-B3EE-86D65DEC5317} = {A604825B-3BA7-4071-BACF-163D392183C8}
+		{34215FE5-2A88-4E7E-82FF-8A00443D4FF4} = {4441747E-F270-4B09-A20A-A7D17C305DF0}
+		{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09} = {9F16E15A-158D-4585-A27D-27EBFB277004}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5E18A04-26E2-4C45-9741-0B3BFF6FFE14}
