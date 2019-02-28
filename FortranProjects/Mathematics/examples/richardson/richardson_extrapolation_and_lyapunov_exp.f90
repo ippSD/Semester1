@@ -8,12 +8,13 @@ program richardson_extrapolation_and_lyapunov_exp
     use richardson_extrapolation
     use cauchy_problem_solver
     use temporal_schemes
+    use orbit_functions
     use dislin_mod, only: plot, semilogy, plot_title, plot_legend, plot_end
     implicit none
     
     logical, parameter :: PLOT_TO_FILE = .true.
-    integer, parameter :: M = 1000, M0 = 1, N = 1
-    real, parameter :: TF = 1d2
+    integer, parameter :: M = 1000, M0 = 1, N = 4
+    real, parameter :: TF = 4d0*2d0*acos(-1d0)
     
     character( len = 50 ), parameter :: FILENAMES(5) = [  &
         "PlotRichardsonExtError.png"                    , &
@@ -58,7 +59,7 @@ program richardson_extrapolation_and_lyapunov_exp
         .false., &
         .true. , &
         .true. , &
-        .true. , &
+        .false. , &
         .false.  &
     ]
     character( len = 50 ), parameter :: LABELS(5, 2) = reshape( &
@@ -87,13 +88,13 @@ program richardson_extrapolation_and_lyapunov_exp
     time = [(i*TF/M, i = 0, M)]
     
     ! Set initial condition.
-    u_cauchy(0,1)  = 1d0
-    u_richard(0,1) = 1d0
+    u_cauchy(0,:)  = [1d0, 0d0, 0d0, 1d0]
+    u_richard(0,:) = [1d0, 0d0, 0d0, 1d0]
     
     ! Solve Cauchy Problem
     call cauchy_problem(        &
         time                  , &
-        cauchy_neg_exponential, &
+        kepler_2d, &
         runge_kutta_4         , &
         u_cauchy                &
     )
@@ -101,7 +102,7 @@ program richardson_extrapolation_and_lyapunov_exp
     ! Solve Cauchy Problem with Richardson Extrapolation.
     call richardson_extrapolator (                      &
         time_domain           = time                  , &
-        differential_operator = cauchy_neg_exponential, &
+        differential_operator = kepler_2d, &
         temporal_scheme       = runge_kutta_4         , &
         order                 = 4                     , &
         solution              = u_richard             , &
@@ -129,7 +130,7 @@ program richardson_extrapolation_and_lyapunov_exp
             y1 => richard_error
             y2 => real_error_richard
         else if ( i == 4 ) then
-            y1 => real_lyapunov
+            y1 => richard_lyapunov!real_lyapunov
             y2 => richard_lyapunov
         else if ( i == 5 ) then
             y1 => deviation_lyapunov

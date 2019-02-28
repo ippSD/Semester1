@@ -4,7 +4,7 @@
 !   Draws a Celestial body's Poincaré map by disturbing its                 !
 !   initial condition.                                                      !
 !---------------------------------------------------------------------------!
-    
+
 program poincare_map
     use orbit_lagrange_points
     use orbit_pointers

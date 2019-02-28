@@ -127,5 +127,68 @@ module orbit_functions
         
         u_next = f_n_bodies(u,t)
     end subroutine
+    
+    function cr3bp(u, t) result(f)
+        real, intent(in) :: u(:)
+        real, intent(in) :: t
+        real :: f(size(u))
+        
+        real, pointer :: r(:), v(:), dr_dt(:), dv_dt(:)
+        
+        real :: mu, d, r_mag
+        
+        ! Colocar los punteros
+        ! Estado
+        call p2r(u, r)
+        call p2v(u, v)
+        
+        ! Derivadas
+        call p2r(f, dr_dt)
+        call p2v(f, dv_dt)
+        
+        ! Variables
+        mu = (0.049d5)/( 0.049d5+3.986d5)
+        d = sqrt((r(1)+mu)**2d0 + r(2)**2d0 + r(3)**2d0)
+        r_mag = ((r(1)-1d0+mu)**2d0+r(2)**2d0+r(3)**2d0) ** (1d0/3d0)
+        
+        ! Ecuaciones
+        dr_dt = v
+        dv_dt(1) = r(1) + 2*v(2) - (1d0 - mu) * (r(1) + mu) / d**3d0 - mu * (r(1) - 1d0 + mu) / r_mag ** 3d0
+        dv_dt(2) = r(2) - 2*v(1) - (1d0 - mu) * r(2) / d**3d0 - mu * r(2) / r_mag ** 3d0
+        dv_dt(3) = -(1d0-mu)*r(3)/d**3d0 - mu * r(3) / r_mag**3d0
+        
+    contains
+    
+        subroutine p2r(state_vector, r_pointer)
+            real, target, intent(in) :: state_vector(6)
+            real, pointer, intent(out) :: r_pointer(:)
+        
+            r_pointer(1:3) => state_vector(1:3)
+        end subroutine
+    
+        subroutine p2v(state_vector, v_pointer)
+            real, target, intent(in) :: state_vector(6)
+            real, pointer, intent(out) :: v_pointer(:)
+        
+            v_pointer(1:3) => state_vector(4:6)
+        end subroutine
+    
+    end function cr3bp
+    
+    function cr3bp_u(u) result(f)
+        real, intent(in) :: u(:)
+        real :: f(size(u))
+        real :: f2(6)
+        
+        f2 = cr3bp([u, 0d0, 0d0, 0d0], 0d0)
+        f = f2(4:6)
+    end function
+    
+    function cr3bp_uu(u, t) result(f)
+        real :: u(:), t
+        real :: f(size(u))
+        
+        f = cr3bp(u, t)
+    end function
 
 end module orbit_functions
