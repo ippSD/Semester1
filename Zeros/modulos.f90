@@ -1,9 +1,10 @@
 module modulos
+    use Non_Linear_Systems
+    use funcion
     implicit none
     contains
     
     subroutine Newton_Solution()
-    
         real :: x0(3) = [1., 1., 1. ]
         
         call Newton( F, x0 )

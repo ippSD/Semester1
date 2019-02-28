@@ -7,3 +7,12 @@ Release\poincare_map.obj : \
   C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\math\Release\math.mod \
   C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_lagrange_points.mod
 
+Release\poincare_map.obj : \
+  C:\Users\Imanol\Source\Repos\ippSD\Semester1\FortranProjects\Physics\examples\poincare_map\poincare_map.f90 \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin_mod.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\n_bodies\Release\n_bodies.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_pointers.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\math\Release\math.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_lagrange_points.mod
+

@@ -420,3 +420,13 @@ Release\richardson_extrapolation_and_lyapunov_exp.obj : \
   C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\ode_interfaces.mod \
   C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\richardson_extrapolation.mod
 
+Release\richardson_extrapolation_and_lyapunov_exp.obj : \
+  C:\Users\Imanol\Source\Repos\ippSD\Semester1\FortranProjects\Mathematics\examples\richardson\richardson_extrapolation_and_lyapunov_exp.f90 \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Graphics\dislin_mod\Release\dislin_mod.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Physics\orbits\Release\orbit_functions.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\temporal_schemes\Release\temporal_schemes.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\cauchy_problem_solver.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\ode_interfaces.mod \
+  C:\Users\Imanol\source\repos\ippSD\Semester1\FortranProjects\Mathematics\numerical_methods\Release\richardson_extrapolation.mod
+
