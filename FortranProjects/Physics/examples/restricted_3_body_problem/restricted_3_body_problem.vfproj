@@ -29,6 +29,8 @@
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\ABM_method.f90"/>
 		<File RelativePath=".\Cauchy_Problem.f90"/>
+		<File RelativePath="..\..\..\Mathematics\temporal_schemes\dop853-master\src\dop853_constants.f90"/>
+		<File RelativePath="..\..\..\Mathematics\temporal_schemes\dop853-master\src\dop853_module.f90"/>
 		<File RelativePath=".\Numerical_Recipes.f90"/>
 		<File RelativePath=".\ode.f90"/>
 		<File RelativePath=".\ODE_Interface.f90"/>

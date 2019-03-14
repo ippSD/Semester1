@@ -3,11 +3,11 @@ module temporal_schemes
     use Linear_Systems
     use Non_Linear_Systems
     use ode_interfaces, only: ode_function
+    use dop853_module
     implicit none
     
     private
     public :: euler_explicit, euler_implicit, runge_kutta_4
-    
 
     contains
     
@@ -132,6 +132,65 @@ module temporal_schemes
         m = size(u1)
         call rk4vec( t1, m, u1, t2 - t1, f, u2 )
     end subroutine runge_kutta_4
+    
+    !-----------------------------------------------------------------------!
+    !   ( SUBROUTINE ) dopri853                                       !
+    !-----------------------------------------------------------------------!
+    !   Extrapolates the solution of the Cauchy Problem at a given time     !
+    !   and initial conditions by means of the Explicit Euler               !
+    !   numerical scheme.                                                   !
+    !-----------------------------------------------------------------------!
+    !   Parameters: !                                                       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (ode_function) f(u,t)                                 !
+    !               ! f: RN x R => RN                                       !
+    !               !     u , t => du_dt                                    !
+    !               ! Derivative function of the Cauchy Problem where       !
+    !               ! u is the state vector ant t the evaluation time.      !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real) t1                                             !
+    !               ! Time at which the initial conditions are given.       !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real) t2                                             !
+    !               ! Time at which the solution is evaluated.              !
+    !---------------!-------------------------------------------------------!
+    !   IN          ! (real(N)) u1                                          !
+    !               ! Initial conditions' state vector at time 't1'.        !
+    !---------------!-------------------------------------------------------!
+    !   OUT         ! (real(N)) u2                                          !
+    !               ! Solution's state vector at time 't2'.                 !
+    !---------------!-------------------------------------------------------!
+    recursive subroutine dopri853(f, t1, t2, u1, u2)
+        procedure(ode_function) :: f
+        real, intent(in) :: t1, t2, u1(:)
+        real, intent(out) :: u2(size(u1))
+        real :: dt = 1e-1, u_half(size(u1)), t_end
+        type(dop853_class) :: dop_class
+        
+        integer :: n, i, j
+        logical :: output
+        
+        real :: tols(size(u1));
+        
+        n = size(u1)
+        
+        t_end = t1
+        u2 = u1
+        tols = 1d-4
+        
+        call dop_class%initialize(n = n,fcn = sub_f, status_ok = output)
+        call dop_class%integrate(t_end,u2,t2,tols,tols,0,i)
+        
+        contains
+        
+        subroutine sub_f(me,x,y,yp)
+            class(dop853_class),intent(inout) :: me
+            real, intent(in) :: x
+            real, intent(in) :: y(:)
+            real, intent(out) :: yp(:)
+            yp = f(y,x)
+        end subroutine
+    end subroutine
     
 end module temporal_schemes
  
