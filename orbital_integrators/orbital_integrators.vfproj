@@ -25,10 +25,14 @@
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd;h;inc"/>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\External\d1mach.f90"/>
+		<File RelativePath=".\External\ode.f"/>
+		<File RelativePath=".\External\odex.f"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<Filter Name="External"/>
 		<File RelativePath="..\orbit_integrators_vs_gmat\dop853.f"/>
-		<File RelativePath=".\ode.f"/>
-		<File RelativePath="..\orbit_integrators_vs_gmat\odex.f"/>
+		<File RelativePath=".\module_ode.f90"/>
+		<File RelativePath=".\module_odex.f90"/>
 		<File RelativePath="..\orbit_integrators_vs_gmat\orbital_integrators.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

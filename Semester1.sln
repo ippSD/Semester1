@@ -216,6 +216,9 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "Zeros", "Zeros\Zeros.vfproj
 	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "orbital_integrators", "orbital_integrators\orbital_integrators.vfproj", "{87D3EA1E-D8F2-4FD7-9BCF-D1C2F2CCCE09}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CAFC63F8-684D-45A9-B769-324A03BA8F91} = {CAFC63F8-684D-45A9-B769-324A03BA8F91}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

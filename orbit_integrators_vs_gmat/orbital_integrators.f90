@@ -1,6 +1,6 @@
 program orbital_integrators
-    implicit none
+    use module_odex
+    use module_ode
     contains
     include "dop853.f"
-    include "odex.f"
 end program 

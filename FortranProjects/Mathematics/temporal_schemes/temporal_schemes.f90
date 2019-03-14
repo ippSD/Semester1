@@ -4,6 +4,8 @@ module temporal_schemes
     use Non_Linear_Systems
     use ode_interfaces, only: ode_function
     use dop853_module
+    use module_ode, only: ode
+    use module_odex, only: odex => odex_int
     implicit none
     
     private

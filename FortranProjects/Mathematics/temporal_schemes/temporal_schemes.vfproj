@@ -26,8 +26,13 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<Filter Name="External">
+		<File RelativePath=".\External\d1mach.f90"/>
 		<File RelativePath=".\dop853-master\src\dop853_constants.f90"/>
-		<File RelativePath=".\dop853-master\src\dop853_module.f90"/></Filter>
+		<File RelativePath=".\dop853-master\src\dop853_module.f90"/>
+		<File RelativePath=".\External\ode.f"/>
+		<File RelativePath=".\External\odex.f"/></Filter>
+		<File RelativePath=".\module_ode.f90"/>
+		<File RelativePath=".\module_odex.f90"/>
 		<File RelativePath=".\rkf45.f90"/>
 		<File RelativePath=".\temporal_schemes.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>
