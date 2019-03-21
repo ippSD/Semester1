@@ -9,7 +9,7 @@ program restricted_3_body_problem
     implicit none
     
     integer, parameter :: N = 6, M = 10000
-    real, parameter :: TF = 2d0 * acos(-1d0) * 3, MU = (0.049d5)/( 0.049d5+3.986d5), EPSIL = 1e-6
+    real, parameter :: TF = 2d0 * acos(-1d0) * 3, MU = (0.049d5)/( 0.049d5+3.986d5), EPSIL = 1e+2
     real :: u(0:M,N), time(0:M), u0(5,N), a(N,N)
     complex :: lambda(N)
     integer :: i
@@ -62,20 +62,19 @@ program restricted_3_body_problem
     
         call cp( &
             time_domain = time, &
-            temporal_scheme = dopri853, &
+            temporal_scheme = ode, &
             differential_operator = cr3bp, &
             solution = u &
         )
             
         open(unit = 13, file = trim(filename))
-        do i = 1, M
-            write(13, *) u(i,1) - u(0,1), u(i,2) - u(0,2)
-        end do
+        
+        write(13, *) u(:,1)
         close(13);
             
         call cp( &
             time_domain = time, &
-            temporal_scheme = dopri853, &
+            temporal_scheme = ode, &
             differential_operator = cr3bp_lineal, &
             solution = w &
         )

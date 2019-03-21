@@ -34,5 +34,6 @@
 		<File RelativePath="..\orbit_integrators_vs_gmat\dop853.f"/>
 		<File RelativePath=".\module_ode.f90"/>
 		<File RelativePath=".\module_odex.f90"/>
-		<File RelativePath="..\orbit_integrators_vs_gmat\orbital_integrators.f90"/></Filter></Files>
+		<File RelativePath="..\orbit_integrators_vs_gmat\orbital_integrators.f90"/>
+		<File RelativePath=".\wrapper_ode113.f90"/></Filter></Files>
 	<Globals/></VisualStudioProject>

@@ -11,7 +11,7 @@ module module_ode
         real, intent(out) :: u2(size(u1))
         real :: dt = 1e-1, u_half(size(u1)), work(30)
         real :: atol, rtol
-        integer :: n, ipar(size(u1)), iflag, liwork = 30, iwork(30), lwork = 30
+        integer :: n, ipar(size(u1)), iflag = 1, liwork = 30, iwork(30), lwork = 30
         real :: rpar(size(u1))
         
         atol = 1d-5
@@ -20,6 +20,9 @@ module module_ode
         u2 = u1
         
         call ode(f_sub,n,u2,t1,t2,rtol,atol,iflag,work,iwork)
+        write(*,*) iflag
+        write(*,*)u2(2) - u1(2)
+        
         
         contains
         
