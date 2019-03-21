@@ -4,12 +4,12 @@ module temporal_schemes
     use Non_Linear_Systems
     use ode_interfaces, only: ode_function
     use dop853_module
-    use module_ode, only: ode
+    use module_ode, only: ode => ode_int
     use module_odex, only: odex => odex_int
     implicit none
     
     private
-    public :: euler_explicit, euler_implicit, runge_kutta_4
+    public :: euler_explicit, euler_implicit, runge_kutta_4, dopri853, ode, odex
 
     contains
     

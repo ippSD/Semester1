@@ -18,7 +18,7 @@
 !* 
 !*  Author: Juan A Hernandez (juanantonio.hernandez@upm.es) 2016
 !********************************************************************************
-module Temporal_Schemes
+module External_Temporal_Schemes
 
 use Non_Linear_Systems 
 use ODE_Interface
