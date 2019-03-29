@@ -29,8 +29,16 @@
 		<File RelativePath=".\External\d1mach.f90"/>
 		<File RelativePath=".\dop853-master\src\dop853_constants.f90"/>
 		<File RelativePath=".\dop853-master\src\dop853_module.f90"/>
-		<File RelativePath=".\External\ode.f"/>
-		<File RelativePath=".\External\odex.f"/></Filter>
+		<File RelativePath=".\External\ode.f">
+			<FileConfiguration Name="Debug|Win32">
+				<Tool Name="VFFortranCompilerTool" F77RuntimeCompatibility="true"/></FileConfiguration>
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" F77RuntimeCompatibility="true"/></FileConfiguration></File>
+		<File RelativePath=".\External\odex.f">
+			<FileConfiguration Name="Debug|Win32">
+				<Tool Name="VFFortranCompilerTool" F77RuntimeCompatibility="true"/></FileConfiguration>
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" F77RuntimeCompatibility="true"/></FileConfiguration></File></Filter>
 		<File RelativePath=".\module_ode.f90"/>
 		<File RelativePath=".\module_odex.f90"/>
 		<File RelativePath=".\rkf45.f90"/>

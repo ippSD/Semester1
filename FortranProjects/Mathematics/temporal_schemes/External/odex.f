@@ -482,7 +482,7 @@
        POSNEG=SIGN(1.D0,XEND-X) 
        K=MAX(2,MIN(KM-1,INT(-LOG10(RTOL(1)+1.0D-40)*0.6D0+1.5D0)))
        HMAX=ABS(HMAX)     
-       H=MAX(ABS(H),1.D-4) 
+       H=MAX(ABS(H),1.D-4)
        H=POSNEG*MIN(H,HMAX,ABS(XEND-X)/2.D0)
        IF (IOUT.GE.1) THEN
         IF (IOUT.GE.2) THEN

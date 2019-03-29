@@ -40,10 +40,11 @@ module temporal_schemes
     !   OUT         ! (real(N)) u2                                          !
     !               ! Solution's state vector at time 't2'.                 !
     !---------------!-------------------------------------------------------!
-    recursive subroutine euler_explicit(f, t1, t2, u1, u2)
+    recursive subroutine euler_explicit(f, t1, t2, u1, u2, tol)
         procedure(ode_function) :: f
         real, intent(in) :: t1, t2, u1(:)
         real, intent(out) :: u2(size(u1))
+        real, intent(in), optional :: tol
         real :: dt = 1e-1, u_half(size(u1))
                 
         u2 = u1 + (t2 - t1) * f( u1, t1)
@@ -76,10 +77,11 @@ module temporal_schemes
     !   OUT         ! (real(N)) u2                                          !
     !               ! Solution's state vector at time 't2'.                 !
     !---------------!-------------------------------------------------------!
-    recursive subroutine euler_implicit(f, t1, t2, u1, u2)
+    recursive subroutine euler_implicit(f, t1, t2, u1, u2, tol)
         procedure(ode_function) :: f
         real, intent(in) :: t1, t2, u1(:)
         real, intent(out) :: u2(size(u1))
+        real, intent(in), optional :: tol
         real :: dt = 1e-1, u_half(size(u1))
         
         call euler_explicit( f, t1, t2, u1, u2 )
@@ -124,10 +126,11 @@ module temporal_schemes
     !   OUT         ! (real(N)) u2                                          !
     !               ! Solution's state vector at time 't2'.                 !
     !---------------!-------------------------------------------------------!
-    recursive subroutine runge_kutta_4(f, t1, t2, u1, u2)
+    recursive subroutine runge_kutta_4(f, t1, t2, u1, u2, tol)
         procedure(ode_function) :: f
         real, intent(in) :: t1, t2, u1(:)
         real, intent(out) :: u2(size(u1))
+        real, intent(in), optional :: tol
         real :: dt = 1e-1, u_half(size(u1))
         integer :: m
         
@@ -162,26 +165,33 @@ module temporal_schemes
     !   OUT         ! (real(N)) u2                                          !
     !               ! Solution's state vector at time 't2'.                 !
     !---------------!-------------------------------------------------------!
-    recursive subroutine dopri853(f, t1, t2, u1, u2)
+    recursive subroutine dopri853(f, t1, t2, u1, u2, tol)
         procedure(ode_function) :: f
         real, intent(in) :: t1, t2, u1(:)
         real, intent(out) :: u2(size(u1))
         real :: dt = 1e-1, u_half(size(u1)), t_end
+        real, intent(in), optional :: tol
         type(dop853_class) :: dop_class
         
-        integer :: n, i, j
+        integer :: n, iout, idi
         logical :: output
         
         real :: tols(size(u1));
         
         n = size(u1)
-        
         t_end = t1
         u2 = u1
-        tols = 1d-4
+        !if ( present(tol) ) then
+        !    tols = tol
+        !else
+        !    tols = 1d-3
+        !endif
+        tols = 1d-3
+        iout = 0
+        idi = 1
         
-        call dop_class%initialize(n = n,fcn = sub_f, status_ok = output)
-        call dop_class%integrate(t_end,u2,t2,tols,tols,0,i)
+        call dop_class%initialize(n = n, fcn = sub_f, status_ok = output)
+        call dop_class%integrate(t_end, u2, t2, tols, tols, iout, idi)
         
         contains
         

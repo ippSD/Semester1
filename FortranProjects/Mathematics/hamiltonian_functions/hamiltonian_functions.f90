@@ -17,9 +17,8 @@ module hamiltonian_functions
     function oscilator(u, t) result(f)
         real, intent(in) :: u(:), t
         real :: f(size(u))
-    
-        real :: x , p
-        
+        real :: x , p        
+
         x = u(1)
         p = u(2)
 

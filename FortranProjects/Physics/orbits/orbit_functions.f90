@@ -133,18 +133,28 @@ module orbit_functions
         real, intent(in) :: t
         real :: f(size(u))
         
-        real, pointer :: r(:), v(:), dr_dt(:), dv_dt(:)
+        !real, pointer :: r(:), v(:)
+        !real, pointer :: dr_dt(:), dv_dt(:)
+        real :: r(3), v(3)
+        real :: dr_dt(3), dv_dt(3)
         
         real :: mu, d, r_mag
         
+        !r => u(1:3)
+        !v => u(4:6)
+        !dr_dt => f(1:3)
+        !dv_dt => f(4:6)
+        r = u(1:3)
+        v = u(4:6)
+        
         ! Colocar los punteros
         ! Estado
-        call p2r(u, r)
-        call p2v(u, v)
+        !call p2r(u, r)
+        !call p2v(u, v)
         
         ! Derivadas
-        call p2r(f, dr_dt)
-        call p2v(f, dv_dt)
+        !call p2r(f, dr_dt)
+        !call p2v(f, dv_dt)
         
         ! Variables
         mu = (0.049d5)/( 0.049d5+3.986d5)
@@ -156,6 +166,11 @@ module orbit_functions
         dv_dt(1) = r(1) + 2*v(2) - (1d0 - mu) * (r(1) + mu) / d**3d0 - mu * (r(1) - 1d0 + mu) / r_mag ** 3d0
         dv_dt(2) = r(2) - 2*v(1) - (1d0 - mu) * r(2) / d**3d0 - mu * r(2) / r_mag ** 3d0
         dv_dt(3) = -(1d0-mu)*r(3)/d**3d0 - mu * r(3) / r_mag**3d0
+        
+        !write(*,*) f
+        
+        f(1:3) = dr_dt
+        f(4:6) = dv_dt
         
     contains
     
@@ -174,21 +189,5 @@ module orbit_functions
         end subroutine
     
     end function cr3bp
-    
-    function cr3bp_u(u) result(f)
-        real, intent(in) :: u(:)
-        real :: f(size(u))
-        real :: f2(6)
-        
-        f2 = cr3bp([u, 0d0, 0d0, 0d0], 0d0)
-        f = f2(4:6)
-    end function
-    
-    function cr3bp_uu(u, t) result(f)
-        real :: u(:), t
-        real :: f(size(u))
-        
-        f = cr3bp(u, t)
-    end function
 
 end module orbit_functions

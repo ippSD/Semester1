@@ -99,13 +99,16 @@ module ode_interfaces
         !   OUT         ! (real(N)) u2                                      !
         !               ! Solution's state vector at time 't2'.             !
         !---------------!---------------------------------------------------!
-        subroutine temporal_scheme ( f, t1, t2, u1, u2 )
+        subroutine temporal_scheme ( f, t1, t2, u1, u2, tol )
             import :: ode_function
             procedure(ode_function) :: f
             real, intent(in) :: t1, t2, u1(:)
             real, intent(out) :: u2(size(u1))
+            real, intent(in), optional :: tol
         end subroutine temporal_scheme
         
     end interface
+    
+    
     
 end module ode_interfaces

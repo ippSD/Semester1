@@ -14,7 +14,7 @@ program oscilator_integrator
     
     logical, parameter :: DO_TIMEPLOT = .true.
     
-    integer, parameter :: N = 100
+    integer, parameter :: N = 300
     real, parameter :: PI = acos(-1d0)
     real :: period = 2.0 * PI, tf, dt
     real, target :: u(0:n, 2)
@@ -56,9 +56,9 @@ program oscilator_integrator
         end if
     
         do i = 1, 3
-            if ( i == 1 ) selected_propagator => euler_explicit
-            if ( i == 2 ) selected_propagator => runge_kutta_4
-            if ( i == 3 ) selected_propagator => euler_implicit
+            if ( i == 1 ) selected_propagator => odex!euler_explicit
+            if ( i == 2 ) selected_propagator => dopri853!runge_kutta_4
+            if ( i == 3 ) selected_propagator => ode!euler_implicit
 
             call cauchy_problem( time, f, selected_propagator, u )
             open( unit = 13, file = datafiles(i) )

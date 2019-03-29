@@ -1,6 +1,6 @@
 module cauchy_problem_solver
-  use ode_interfaces, only: ode_function, propagator => temporal_scheme
-  implicit none
+    use ode_interfaces, only: ode_function, propagator => temporal_scheme
+    implicit none
     
     contains
     
@@ -30,18 +30,18 @@ module cauchy_problem_solver
     !               ! the state vector. On row 0, the initial condition of  !
     !               ! the Cauchy Problem must be provided.                  !
     !---------------!-------------------------------------------------------!
-    subroutine cauchy_problem(     &
-            time_domain          , &
-            differential_operator, &
-            temporal_scheme      , &
-            solution               &
-            )
+    subroutine cauchy_problem( &
+        time_domain          , &
+        differential_operator, &
+        temporal_scheme      , &
+        solution)
+
         real, intent(in) :: time_domain(0:)  !0:M
         procedure(ode_function) :: differential_operator
         procedure(propagator) :: temporal_scheme
         real, intent(inout) :: solution(0:,:) !0:M (time steps), N(variables)
         integer :: m, i
-
+        
         m = size(time_domain) - 1
         do i = 0, m - 1
             call temporal_scheme(          &
@@ -49,8 +49,9 @@ module cauchy_problem_solver
                 t1 = time_domain(i)      , &
                 t2 = time_domain(i+1)    , &
                 u1 = solution(i,:)       , &
-                u2 = solution(i+1,:)       &
-            )
-        end do
-      end subroutine
+                u2 = solution(i+1,:))
+        enddo
+    
+    end subroutine
+
 end module cauchy_problem_solver

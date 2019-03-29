@@ -253,7 +253,7 @@ include "d1mach.f90"
 !
   100 h = dsign(dmin1(dabs(h),dabs(tend-x)),h)
       do 110 l = 1,neqn
-  110   wt(l) = releps*dabs(yy(l)) + abseps
+  110 wt(l) = releps*dabs(yy(l)) + abseps
       call step(x,yy,f,neqn,h,eps,wt,start,&
           hold,k,kold,crash,phi,p,yp,psi,&
               alpha,beta,sig,v,w,g,phase1,ns,nornd)
